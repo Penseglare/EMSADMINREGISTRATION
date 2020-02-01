@@ -22,6 +22,8 @@ try{
     console.log("controller");
     let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
         let data = registrationManagers.getRegistredUserBy();
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.send(data);
 } 
 catch(error)
@@ -35,6 +37,9 @@ try{
     let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
     let id = Number(req.params.id);
         let data = registrationManagers.getRegistredUserById(id);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
         res.send(data);
 } 
 catch(error)

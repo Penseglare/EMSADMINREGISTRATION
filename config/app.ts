@@ -1,14 +1,20 @@
 import express from "express";
 import * as bodyParser from "body-parser";
 import routeConfig from "../config/routeConfig"
+import dbconfig from "../config/dbConfig";
+// import mongodb from "mongodb";
+import mongodb from "mongoose";
+
 class App {
 
     public app: express.Application;
     public routeConfig:routeConfig=new routeConfig();
+    public db:dbconfig= new dbconfig(); 
     constructor() {
         this.app = express();
         this.config();   
-        this.routeConfig.registerRoute(this.app);  
+        this.routeConfig.registerRoute(this.app);
+        this.db.dbInitialization(mongodb,'mongodb://127.0.0.1:27017/emsadmin');
     }
 
     private config(): void{
@@ -16,9 +22,7 @@ class App {
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
-        
     }
-
 }
 
 export default new App().app;

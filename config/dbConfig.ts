@@ -1,13 +1,20 @@
-import mongoose from "mongoose";
+import mongoose,{Schema,Document} from "mongoose";
 
-
-mongoose.connect('mongodb://localhost:27017/ems_admin_registration', {useNewUrlParser: true}, (err) => {
-if (!err) {
-console.log('Successfully Established Connection with MongoDB')
+export default class dbConfig
+{
+    public dbInitialization(mongoose: any,url:string):void{
+        mongoose.Promise = global.Promise;
+        mongoose.connect(url, {useNewUrlParser: true,useUnifiedTopology: true}, (err:any) => {
+        if (!err) {
+        console.log('Successfully Established Connection with MongoDB');
+        }
+        else {
+        console.log('Failed to Establish Connection with MongoDB with Error: '+ err)
+        }
+        });
+        //mongoose.close();
+    } 
 }
-else {
-console.log('Failed to Establish Connection with MongoDB with Error: '+ err)
-}
-});
 
-export default mongoose;
+
+//export default mongoose;

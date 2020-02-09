@@ -1,4 +1,12 @@
-import mongoose from "../config/dbConfig";
+import mongoose from "mongoose";
+// import {Document} from "mongoose";
+
+// export interface IRegistrationSchema extends Document {
+//     id: number;
+//     name: string;
+//     code: string;
+//   }
+  
 const Schema = mongoose.Schema;
 const RegistrationSchema = new Schema({
     id: {
@@ -11,8 +19,9 @@ const RegistrationSchema = new Schema({
     code: {
         type: String,
         required: 'Enter a code'
-    },
-    
-});
-
+    }
+}
+);
+//export default mongoose.model<IRegistrationSchema>('registration',RegistrationSchema);
 export default RegistrationSchema;
+//export default mongoose.model('registration',RegistrationSchema);

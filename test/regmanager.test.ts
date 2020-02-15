@@ -7,7 +7,7 @@ describe("Registration",()=>{
     it('succeeds with correct credentials', () => {
         const result =  request(app).get("/api/getRegisteredUser");
         console.log(app);
-result.ok
+        result.ok
         debugger;
         //expect(result).toEqual("hello");
         //console.log(result);

@@ -2,6 +2,6 @@ import registrationModel from "../../model/registrationModel";
 
 export default interface iregistrationRepository
 {
-    getRegistredUserBy():registrationModel[];
+    getRegistredUserBy():any;
     getRegistredUserById(id:number):registrationModel;
 }

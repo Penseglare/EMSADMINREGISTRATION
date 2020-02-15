@@ -47,4 +47,13 @@ catch(error)
     throw error;
 }
 }
+public user():any{
+    try {
+        let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
+        registrationManagers.user();
+    } catch (error) {
+        
+    }
+    return null;
+}
 }

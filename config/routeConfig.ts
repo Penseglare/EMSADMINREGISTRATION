@@ -13,6 +13,7 @@ public registerRoute(route:express.Application):void
 
     route.get("/api/getRegisteredUser",registration.getRegistredUserBy);
     route.get("/api/:id/getRegisteredUserById",registration.getRegistredUserById);
+    route.get("/api/user",registration.user);
     // route.post("/api/postRegisteredUser",this.registrationController.getRegistredUserBy);
     // route.post("/api/updateRegisteredUser",this.registrationController.getRegistredUserBy);
 }

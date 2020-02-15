@@ -11,6 +11,7 @@ import registrationModel from "../../model/registrationModel";
 import mongoose from 'mongoose';
 import  RegistrationSchema  from '../../dbmodel/registrationSchema';
 
+
 @injectable()
 export default class registrationManager implements iregistrationManager
 {
@@ -20,6 +21,19 @@ export default class registrationManager implements iregistrationManager
 
         try {
             let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            //let data =registrationRepositorydata.getRegistredUserBy();
+            // registrationRepositorydata.getRegistredUserBy().then((res:any)=>{
+
+            // });
+            // console.log(data);
+            // let regModel=Array<registrationModel>();
+            // data.map((v:any,i:number) =>{
+            //     let re =new registrationModel();
+            //     console.log(v);
+            //     re.id = v.id;re.name=v.name;re.code=v.code;
+            //     regModel.push(re);
+            //    });
+            // return regModel;
             return registrationRepositorydata.getRegistredUserBy();
             
         } catch (error) {
@@ -37,7 +51,9 @@ export default class registrationManager implements iregistrationManager
             throw error;
         }
     } 
-
+public user():any{
+    return null;
+}
     // public saveUser(registrationModel: registrationModel):void
     // {
     //    let regnn = new RegistrationSchema();

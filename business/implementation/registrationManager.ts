@@ -47,7 +47,7 @@ export default class registrationManager implements iregistrationManager
         try {
             let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
             let data =await registrationRepositorydata.deleteuser(pkId);
-            //console.log(data);
+            console.log(data);
             return data;
             
         } catch (error) {

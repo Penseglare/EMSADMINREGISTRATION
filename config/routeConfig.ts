@@ -12,8 +12,9 @@ public registerRoute(route:express.Application):void
     let registration = containerconfig.get<iregistrationController>(TYPES.iregistration);
 
     route.get("/api/getRegisteredUser",registration.getRegistredUserBy);
-    route.get("/api/:id/getRegisteredUserById",registration.getRegistredUserById);
-    route.get("/api/user",registration.user);
+    route.get("/api/getRegisteredUserById/:id",registration.getRegistredUserById);
+    route.get("/api/deleteuser/:id",registration.deleteuser);
+    route.post("/api/saveuser",registration.saveuser);
     // route.post("/api/postRegisteredUser",this.registrationController.getRegistredUserBy);
     // route.post("/api/updateRegisteredUser",this.registrationController.getRegistredUserBy);
 }

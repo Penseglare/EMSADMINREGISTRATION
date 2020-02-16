@@ -16,12 +16,12 @@ export default class registrationController implements iregistrationController
         
     }
    
-public getRegistredUserBy(req: Request, res: Response):any
+public async getRegistredUserBy(req: Request, res: Response):Promise<any>
 {
 try{
-    console.log("controller");
+    //console.log("controller");
     let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
-        let data = registrationManagers.getRegistredUserBy();
+        let data = await registrationManagers.getRegistredUserBy();
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.send(data);
@@ -31,16 +31,48 @@ catch(error)
     throw error;
 }
 }
-public getRegistredUserById(req: Request, res: Response):any
+public async getRegistredUserById(req: Request, res: Response): Promise<any>
 {
 try{
     let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
-    let id = Number(req.params.id);
-        let data = registrationManagers.getRegistredUserById(id);
+    let id = String(req.params.id);
+    console.log(id);
+        let data = await registrationManagers.getRegistredUserById(id);
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
         res.send(data);
+} 
+catch(error)
+{
+    throw error;
+}
+}
+public async deleteuser(req: Request, res: Response): Promise<any>
+{
+try{
+    let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
+    let id = String(req.params.id);
+    //console.log(id);
+        let data = await registrationManagers.deleteuser(id);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.send(data);
+} 
+catch(error)
+{
+    throw error;
+}
+}
+public async saveuser(req: Request, res: Response): Promise<any>
+{
+try{
+    let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
+    console.log(req.body);
+        let data = await registrationManagers.saveUser(req.body);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.status(200);
 } 
 catch(error)
 {

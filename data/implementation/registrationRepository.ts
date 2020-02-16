@@ -9,69 +9,92 @@ import registrationSchema  from "../../dbmodel/registrationSchema";
 @injectable()
 export default class registrationRepository implements iregistrationRepository
 {
-    //public registrationModel:registrationModel = new registrationModel();
-    //public registrationModelobj = [  new registrationModel( 1,"A","ab"),new registrationModel( 2,"b","abc")];
-    //public regn = mongoose.model("registration",registrationSchema);
     public getRegistredUserBy():any
     {
         try {
            let regn = mongoose.model("registration",registrationSchema);
-           //let reg = new regn({id:1,name : "A",code:"ab"});
-        //    let sch = require("../../dbmodel/registrationSchema");
-        //    let sc1 = new sch();
-        //    let sc = new sch([{id:1,name : "A",code:"ab"},{id:2,name : "B",code:"abc"},{id:3,name : "c",code:"abcd"}]); 
-        
-        //    reg.save().then((sc:any) => {
-        //        console.log("saved success");
-        //    })
-        //    .catch((err:any) => {
-        //     console.log("unable to save to database");
-        //     });
-            let regModel:any;
-
-            regn.find({},(err:any, businesses:any)=>{
-                if(err){
-                  console.log(err);
-                }
-                else {
-                  
-                //    businesses.map((v:any,i:number) =>{
-                //    let re =new registrationModel();
-                //    re.id = v.id;re.name=v.name;re.code=v.code;
-                //    regModel.push(re);
-                //   });
-                 businesses;
-                
-                }
-              }).then((res:any)=>{
-                regModel =res;
-              });
-            //   console.log(regModel);
-            console.log(regModel);
-            return  regModel;
-
-        } catch (error) {
+            return regn.find()
+                       .then(businesses => {
+                        let regModel= Array<registrationModel>();
+                             businesses.map((element:any,i:number) => {
+                            let re =new registrationModel();
+                            re.pkId = element._id,
+                            re.id = element.id;re.name=element.name;re.code=element.code;
+                            regModel.push(re);
+                           });
+                             return regModel;
+              })
+              .catch(err => {
+                console.error(err)
+              })
+        }
+         catch (error) {
             throw error;
         }
     } 
-    public getRegistredUserById(id:number):registrationModel
+    public getRegistredUserById(pkId:string):any
     {
         try {
             let regn = mongoose.model("registration",registrationSchema);
-            let id = "5e403b0c21c3db2c080fd267";
-            let re =new registrationModel();
+            //pkId = "5e403b0c21c3db2c080fd267";
             const mongodb = require("mongodb");
-            regn.find(mongodb.ObjectId("5e403b0c21c3db2c080fd267"),(err:any, v:any)=>{
-                if(err){
-                    console.log(err);
-                }
+            return regn.findById({"_id":mongodb.ObjectId(pkId)})
+            .then((v:any)=>{
+                let re =new registrationModel();
+                re.pkId = v._id,
                 re.id = v.id;re.name=v.name;re.code=v.code;
-
-            }); 
-            return  re;
-
+                console.log(re);
+                return re;
+            }).catch(err => {
+                console.error(err)
+              });
+           //console.log(data);
         } catch (error) {
             throw error;
         }
     } 
+    public deleteuser(pkId:string):any
+    {
+        try {
+            let regn = mongoose.model("registration",registrationSchema);
+            //pkId = "5e403b0c21c3db2c080fd267";
+            const mongodb = require("mongodb");
+            return regn.findByIdAndRemove({"_id":mongodb.ObjectId(pkId)})
+            //.find()
+            .then(businesses => {
+             let regModel= Array<registrationModel>();
+        //  businesses.map((element:any,i:number) => {
+        //          let re =new registrationModel();
+        //          re.pkId = element._id,
+        //          re.id = element.id;re.name=element.name;re.code=element.code;
+        //          regModel.push(re);
+        //         });
+                //console.log(businesses);
+                  return regModel;
+            }).catch(err => {
+                console.error(err)
+              });
+           //console.log(data);
+        } catch (error) {
+            throw error;
+        }
+    } 
+    public saveUser(registration:registrationModel):void
+    {
+        try {
+            let regn = mongoose.model("registration",registrationSchema);
+            let reg = new regn({id:registration.id,name : registration.name,code:registration.code});
+                     reg.save().then((sc:any) => {
+                console.log("saved success");
+            })
+            .catch((err:any) => {
+             console.log("unable to save to database");
+             });
+ 
+ 
+        } catch (error) {
+            
+        } 
+    }
+
 }

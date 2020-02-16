@@ -16,41 +16,58 @@ import  RegistrationSchema  from '../../dbmodel/registrationSchema';
 export default class registrationManager implements iregistrationManager
 {
 
-    public getRegistredUserBy():any
+    public async getRegistredUserBy():Promise<any>
     {
 
         try {
             let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            //let data =registrationRepositorydata.getRegistredUserBy();
-            // registrationRepositorydata.getRegistredUserBy().then((res:any)=>{
-
-            // });
-            // console.log(data);
-            // let regModel=Array<registrationModel>();
-            // data.map((v:any,i:number) =>{
-            //     let re =new registrationModel();
-            //     console.log(v);
-            //     re.id = v.id;re.name=v.name;re.code=v.code;
-            //     regModel.push(re);
-            //    });
-            // return regModel;
-            return registrationRepositorydata.getRegistredUserBy();
+            let data = await registrationRepositorydata.getRegistredUserBy();
+            return data;
             
         } catch (error) {
             throw error;
         }
     } 
-    public getRegistredUserById(id:number):any
+    public async getRegistredUserById(pkId:string): Promise<any>
     {
 
         try {
             let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            return registrationRepositorydata.getRegistredUserById(id);
+            let data =await registrationRepositorydata.getRegistredUserById(pkId);
+            console.log(data);
+            return data;
+            
+        } catch (error) {
+            throw error;
+        }
+    }
+    public async deleteuser(pkId:string): Promise<any>
+    {
+
+        try {
+            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            let data =await registrationRepositorydata.deleteuser(pkId);
+            //console.log(data);
+            return data;
             
         } catch (error) {
             throw error;
         }
     } 
+    public async saveUser(registration:any):Promise<void>
+    {
+        try {
+            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            let reg = new registrationModel();
+            reg.name = registration._name;
+            reg.code =registration._code;
+            reg.id =registration._id;
+            console.log(reg);
+            let data =await registrationRepositorydata.saveUser(reg);
+        } catch (error) {
+    
+        }
+    }
 public user():any{
     return null;
 }

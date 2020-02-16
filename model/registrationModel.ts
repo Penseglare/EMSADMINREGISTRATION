@@ -11,10 +11,12 @@ export default  class registrationModel
         private  _id:number; 
         private  _name:string;
         private  _code:string;
+        private _pkId:string;
     constructor() {
             this._id=0;
             this._name="";
             this._code="";
+            this._pkId ="";
     }
     
 
@@ -35,5 +37,12 @@ export default  class registrationModel
     }
     set code(value:string){
         this._code = value;
+    }
+    get pkId():string{
+        return this._pkId;
+    }
+    set pkId(value:string)
+    {
+        this._pkId=value;
     }
 }

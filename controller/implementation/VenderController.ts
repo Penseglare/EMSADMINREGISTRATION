@@ -10,10 +10,10 @@ import ivenderController from "../interface/ivenderController";
 export default class VenderController implements ivenderController
 {
    
-public async InsertVenderdetails(req: vendermodel, res: Response):Promise<any> {
+public async InsertVenderdetails(req: Request, res: Response):Promise<any> {
     try{
-        res.send(vendermodel);
-
+        // res.send(req.body);
+console.log(req.body);
     }
     catch (error) {
     throw error;

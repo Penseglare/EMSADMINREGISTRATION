@@ -72,7 +72,7 @@ try{
         let data = await registrationManagers.saveUser(req.body);
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        res.status(200);
+        res.status(200).send("success");
 } 
 catch(error)
 {

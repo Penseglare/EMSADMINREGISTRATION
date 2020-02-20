@@ -13,7 +13,6 @@ import iregistrationManager from "../../business/interface/iregistrationManager"
 export default class registrationController implements iregistrationController
 {
         constructor() {
-        
     }
    
 public async getRegistredUserBy(req: Request, res: Response):Promise<any>

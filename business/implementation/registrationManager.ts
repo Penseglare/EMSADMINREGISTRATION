@@ -8,6 +8,7 @@ import iregistrationManager from "../interface/iregistrationManager";
 import iregistrationRepository from "../../data/interface/iregistrationRepository";
 import registrationModel from "../../model/registrationModel"; 
 
+
 import mongoose from 'mongoose';
 import  RegistrationSchema  from '../../dbmodel/registrationSchema';
 
@@ -47,7 +48,7 @@ export default class registrationManager implements iregistrationManager
         try {
             let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
             let data =await registrationRepositorydata.deleteuser(pkId);
-            //console.log(data);
+            console.log(data);
             return data;
             
         } catch (error) {

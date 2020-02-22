@@ -13,13 +13,13 @@ export default class vendorManager implements ivendorManager
     public async savevendor(vendor:any):Promise<void>
     {
         try {
-            let registrationRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.iregistrationrepo);
-            let vendor = new vendorModel();
-            vendor.vendername = vendor.vendername;
-            vendor.emailid =vendor.emailid;
-            vendor.mobilenumber =vendor.mobilenumber;
-            console.log(vendor);
-            let data =await registrationRepositorydata.savevendor(vendor);
+            let registrationRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
+            let vendorm = new vendorModel();
+            vendorm.vendername = vendor.vendername;
+            vendorm.emailid =vendor.emailid;
+            vendorm.mobilenumber =vendor.mobilenumber;
+            console.log(vendorm);
+            let data =await registrationRepositorydata.savevendor(vendorm);
         } catch (error) {
     
         }

@@ -97,4 +97,27 @@ export default class registrationRepository implements iregistrationRepository
         } 
     }
 
+    public updateuser(registration:registrationModel,id:string):any
+    {
+        try {
+            let regn = mongoose.model("registration",registrationSchema);
+            let reg = new regn({id:registration.id,name : registration.name,code:registration.code});
+            const mongodb = require("mongodb");
+          return  regn.findById({"_id":mongodb.ObjectId(id)},(err:any,data:any)=>
+          {
+              data.id=registration.id;data.name= registration.name;data.code=registration.code;
+              console.log(data)
+              data.save().then((sc:any) => {
+                  console.log(sc);
+                console.log("update success");
+            })
+            .catch((err:any) => {
+             console.log("unable to update to database");
+             })
+          });
+        } catch (error) {
+            
+        } 
+    }
+
 }

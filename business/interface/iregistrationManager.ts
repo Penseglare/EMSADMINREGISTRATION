@@ -6,5 +6,5 @@ export default interface iregistrationManager
     getRegistredUserById(pkId:string):any;
     deleteuser(pkId:string):any;
     saveUser(registration:any):any
-    user():any;
+    updateuser(registration:any,id:string):any;
 }

@@ -88,4 +88,19 @@ public user():any{
     }
     return null;
 }
+public async signupuser(req: Request, res: Response):Promise<any>
+{
+try{
+    alert("HI Mahnnn");
+    let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
+        let data = await registrationManagers.signupuser();
+        res.header("Access-Control-Allow-Origin", '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+       res.send(data);
+} 
+catch(error)
+{
+    throw error;
+}
+}
 }

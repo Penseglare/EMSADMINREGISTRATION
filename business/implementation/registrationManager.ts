@@ -69,9 +69,27 @@ export default class registrationManager implements iregistrationManager
     
         }
     }
-public user():any{
+    public user():any{
     return null;
-}
+    }
+    public async signupuser():Promise<any>
+    {
+        try
+        {
+            alert("HI Mahnnn");
+            let registrationRepositorydata= containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            let data = await registrationRepositorydata.getRegistredUserBy();
+            return data;
+            //console.log(reg);
+            //let data=await registrationRepositorydata.signupuser(reg);
+        }
+        catch(error)
+        {
+
+        }
+    }
+
+
     // public saveUser(registrationModel: registrationModel):void
     // {
     //    let regnn = new RegistrationSchema();

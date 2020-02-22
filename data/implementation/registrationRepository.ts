@@ -5,7 +5,7 @@ import registrationModel from "../../model/registrationModel";
 import  express from "express";
 import * as mongoose from 'mongoose';
 import registrationSchema  from "../../dbmodel/registrationSchema";
-
+import LoginSchema  from "../../dbmodel/loginSchema";
 @injectable()
 export default class registrationRepository implements iregistrationRepository
 {
@@ -95,6 +95,29 @@ export default class registrationRepository implements iregistrationRepository
         } catch (error) {
             
         } 
+    }
+    public signupuser():any
+    {
+        try{
+            alert("repository");
+            let regn=mongoose.model("Signup",LoginSchema);
+           // let reg= new regn({signupId:registration.id,userid:registration.userid,password:registration.pwd});
+            //const mongodb = require("mongodb");
+            regn.find()
+            .then(businesses => {
+             let regModel= Array<registrationModel>();
+                  businesses.map((element:any,i:number) => {
+                    console.log("Login Successfull");
+                });
+            }).catch((err:any)=>{
+                    console.log("Please signup for free");
+                });
+
+        }
+        catch(error)
+        {
+
+        }
     }
 
 }

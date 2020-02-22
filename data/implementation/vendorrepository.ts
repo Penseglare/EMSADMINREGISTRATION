@@ -13,7 +13,7 @@ export default class vendorrepository implements ivendorrepository
     {
         try {
             let vendordata = mongoose.model("vendor",vendorschema);
-            let insvendor = new vendordata({id:vendor.id,name : vendor.vendername,code:vendor.emailid});
+            let insvendor = new vendordata({name : vendor.vendername,code:vendor.emailid});
             insvendor.save().then((sc:any) => {
                 console.log("saved success");
             })

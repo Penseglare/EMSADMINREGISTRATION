@@ -11,18 +11,15 @@ export default class routeConfig
 public registerRoute(route:express.Application):void
 {
     let registration = containerconfig.get<iregistrationController>(TYPES.iregistration);
-
+    let vendor = containerconfig.get<ivenderController>(TYPES.ivendor);
     route.get("/api/getRegisteredUser",registration.getRegistredUserBy);
     route.get("/api/getRegisteredUserById/:id",registration.getRegistredUserById);
     route.get("/api/deleteuser/:id",registration.deleteuser);
     route.post("/api/saveuser",registration.saveuser);
     route.put("/api/updateuser/:id",registration.updateuser);
+    route.post("/api/savevendor",vendor.savevendor);
+
     // route.post("/api/postRegisteredUser",this.registrationController.getRegistredUserBy);
     // route.post("/api/updateRegisteredUser",this.registrationController.getRegistredUserBy);
-}
-public vendorRoute(route:express.Application):void
-{
-    let vendor = containerconfig.get<ivenderController>(TYPES.ivendor);
-    route.post("/api/savevendor",vendor.savevendor);
 }
 }

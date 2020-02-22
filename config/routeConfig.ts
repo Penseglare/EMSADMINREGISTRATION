@@ -16,6 +16,9 @@ public registerRoute(route:express.Application):void
     route.get("/api/deleteuser/:id",registration.deleteuser);
     route.post("/api/saveuser",registration.saveuser);
     route.get("/api/signupuser",registration.signupuser);
+
+    route.put("/api/updateuser/:id",registration.updateuser);
+
     // route.post("/api/postRegisteredUser",this.registrationController.getRegistredUserBy);
     // route.post("/api/updateRegisteredUser",this.registrationController.getRegistredUserBy);
 }

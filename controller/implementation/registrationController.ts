@@ -12,6 +12,9 @@ import iregistrationManager from "../../business/interface/iregistrationManager"
 @injectable()
 export default class registrationController implements iregistrationController
 {
+    user() {
+        throw new Error("Method not implemented.");
+    }
         constructor() {
     }
    
@@ -101,7 +104,7 @@ try{
         let data = await registrationManagers.signupuser();
         res.header("Access-Control-Allow-Origin", '*');
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-       res.send(data);
+        res.status(200).send("success");
 } 
 catch(error)
 {

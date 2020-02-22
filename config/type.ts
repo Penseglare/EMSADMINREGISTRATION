@@ -3,7 +3,8 @@ const TYPES = {
     iregistrationbusiness: Symbol("iregistrationbusiness"),
     iregistrationrepo: Symbol("iregistrationrepo"),
     ivendor:Symbol("ivender"),
-    ivendorbusiness:Symbol("ivendorbussiness")
+    ivendorbusiness:Symbol("ivendorbussiness"),
+    ivendorrepo:Symbol("ivendorrepo")
       }; 
 
       export default TYPES;

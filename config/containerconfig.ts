@@ -34,11 +34,11 @@ container.bind<ivendor>(TYPES.ivendor).to(vendor)
 
  
  //business inject binding   
-container.bind<registrationbusiness>(TYPES.iregistrationbusiness).to(registrationbusiness); 
-container.bind<vendormanagerbusiness>(TYPES.ivendorbusiness).to(vendormanagerbusiness);
+container.bind<iregistrationbusiness>(TYPES.iregistrationbusiness).to(registrationbusiness); 
+container.bind<ivendorManagerbusiness>(TYPES.ivendorbusiness).to(vendormanagerbusiness);
 
 //data injuct binding
 container.bind<iregistrationrepo>(TYPES.iregistrationrepo).to(registrationrepo);
-container.bind<ivendorrep>(TYPES.iregistrationrepo).to(vendorrepo)
+container.bind<ivendorrep>(TYPES.ivendorrepo).to(vendorrepo)
 
 export default container;

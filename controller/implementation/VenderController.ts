@@ -14,7 +14,7 @@ export default class VenderController implements ivenderController
 public async savevendor(req: Request, res: Response):Promise<any> {
     try{
         let vendormanager = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
-        console.log(req.body);
+        //console.log(req.body);
             let data = await vendormanager.savevendor(req.body);
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

@@ -4,6 +4,7 @@ import routeConfig from "../config/routeConfig"
 import dbconfig from "../config/dbConfig";
 // import mongodb from "mongodb";
 import mongodb from "mongoose";
+import cors from "cors";
 
 class App {
 
@@ -22,6 +23,7 @@ class App {
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(cors());
     }
 }
 

@@ -69,13 +69,18 @@ export default class registrationManager implements iregistrationManager
     
         }
     }
-public user():any{
-    return null;
+public async updateuser(registration:any,id:string): Promise<any>{
+    try {
+        let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+        let reg = new registrationModel();
+        reg.name = registration._name;
+        reg.code =registration._code;
+        reg.id =registration._id;
+        console.log(reg);
+        let data =await registrationRepositorydata.updateuser(reg,id);
+    } catch (error) {
+
+    }
 }
-    // public saveUser(registrationModel: registrationModel):void
-    // {
-    //    let regnn = new RegistrationSchema();
-    //     const regn = new mongoose.model('registration',RegistrationSchema);
-    //       registrationModel.code
-    // }
+  
 }

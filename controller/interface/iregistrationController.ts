@@ -6,6 +6,7 @@ export default interface iregistrationController
     getRegistredUserById(req: Request, res: Response):any;
     deleteuser(req: Request, res: Response):any;
     saveuser(req: Request, res: Response):void;
-    user():any;
-   // signupuser(req: Request, res: Response):any;
+
+    updateuser(req: Request, res: Response):any;
+
 }

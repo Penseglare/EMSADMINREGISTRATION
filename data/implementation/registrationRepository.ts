@@ -22,6 +22,7 @@ export default class registrationRepository implements iregistrationRepository
                             re.id = element.id;re.name=element.name;re.code=element.code;
                             regModel.push(re);
                            });
+                           
                              return regModel;
               })
               .catch(err => {

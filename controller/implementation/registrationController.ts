@@ -99,7 +99,7 @@ public async updateuser(req: Request, res: Response):Promise<any>{
 public async signupuser(req: Request, res: Response):Promise<any>
 {
 try{
-    console.log("HI Mahnnn");
+    //console.log("HI Mahnnn");
     let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
         let data = await registrationManagers.signupuser();
         res.header("Access-Control-Allow-Origin", '*');

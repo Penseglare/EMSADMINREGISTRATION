@@ -9,5 +9,5 @@ export default interface iregistrationController
     user():any;
     signupuser(req: Request, res: Response):any;
     updateuser(req: Request, res: Response):any;
-
+    getbyvalue(req: Request, res: Response):any;
 }

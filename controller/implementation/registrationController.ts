@@ -111,4 +111,21 @@ catch(error)
     throw error;
 }
 }
+public async getbyvalue(req: Request, res: Response):Promise<any>
+{
+    try{
+        let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
+        let id = Number(req.params.id);
+        console.log(id);
+            let data = await registrationManagers.getbyvalue(id);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    
+            res.send(data);
+    } 
+    catch(error)
+    {
+        throw error;
+    }
+}
 }

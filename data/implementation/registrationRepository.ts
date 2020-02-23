@@ -142,5 +142,27 @@ export default class registrationRepository implements iregistrationRepository
             
         } 
     }
-
+public getbyvalue(id:number):any
+{
+    try {
+        let regn = mongoose.model("registration",registrationSchema);
+        console.log(id);
+        let re =new registrationModel();
+         return regn.findOne({"id":id})
+         .then((v:any)=>{
+            re.pkId = v._id;
+            re.id = v.id;
+            re.name=v.name;
+            re.code=v.code;
+            console.log(v);
+            console.log(re);
+            return re;
+        }).catch(err => {
+            console.error(err)
+          });
+     }
+      catch (error) {
+         throw error;
+     }
+}
 }

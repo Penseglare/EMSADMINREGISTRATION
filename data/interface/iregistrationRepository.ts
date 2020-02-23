@@ -8,5 +8,6 @@ export default interface iregistrationRepository
     saveUser(registration:registrationModel):void;
     signupuser(registration:registrationModel):any;
     updateuser(registration:registrationModel,id:string):any;
+    getbyvalue(id:number):any;
 
 }

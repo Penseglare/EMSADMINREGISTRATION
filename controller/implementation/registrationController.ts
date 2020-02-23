@@ -12,6 +12,9 @@ import iregistrationManager from "../../business/interface/iregistrationManager"
 @injectable()
 export default class registrationController implements iregistrationController
 {
+    user() {
+        throw new Error("Method not implemented.");
+    }
         constructor() {
     }
    
@@ -92,5 +95,20 @@ public async updateuser(req: Request, res: Response):Promise<any>{
     } catch (error) {
         
     }
+}
+public async signupuser(req: Request, res: Response):Promise<any>
+{
+try{
+    console.log("HI Mahnnn");
+    let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
+        let data = await registrationManagers.signupuser();
+        res.header("Access-Control-Allow-Origin", '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.status(200).send("success");
+} 
+catch(error)
+{
+    throw error;
+}
 }
 }

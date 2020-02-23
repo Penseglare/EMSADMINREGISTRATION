@@ -16,6 +16,7 @@ public registerRoute(route:express.Application):void
     route.get("/api/getRegisteredUserById/:id",registration.getRegistredUserById);
     route.get("/api/deleteuser/:id",registration.deleteuser);
     route.post("/api/saveuser",registration.saveuser);
+    route.post("/api/signupuser",registration.signupuser);
     route.put("/api/updateuser/:id",registration.updateuser);
     route.post("/api/savevendor",vendor.savevendor);
     route.get("/api/getRegistredvendorById/:vendorkey",vendor.getRegistredvendorById);

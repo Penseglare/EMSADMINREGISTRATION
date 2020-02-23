@@ -18,12 +18,29 @@ public async savevendor(req: Request, res: Response):Promise<any> {
             let data = await vendormanager.savevendor(req.body);
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            res.json({ststus:200});
+            //res.status(200);
+            res.json({resp:data});
            
     }
     catch (error) {
     throw error; 
     }
 }
-    
+public async getRegistredvendorById(req: Request, res: Response): Promise<any>
+{
+try{
+    let vendorManagers = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
+    let vendorkey = String(req.params.vendorkey);
+        let data = await vendorManagers.getRegistredvendorById(vendorkey);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        //console.log(data);
+        //res.json({data});
+        res.send(data);
+} 
+catch(error)
+{
+    throw error;
+}
+}
 }

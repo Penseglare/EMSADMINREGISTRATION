@@ -19,6 +19,8 @@ public registerRoute(route:express.Application):void
     route.post("/api/signupuser",registration.signupuser);
     route.put("/api/updateuser/:id",registration.updateuser);
     route.post("/api/savevendor",vendor.savevendor);
+    route.get("/api/getvalue/:id",registration.getbyvalue);
+
     // route.post("/api/postRegisteredUser",this.registrationController.getRegistredUserBy);
     // route.post("/api/updateRegisteredUser",this.registrationController.getRegistredUserBy);
 }

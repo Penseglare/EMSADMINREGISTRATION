@@ -18,10 +18,11 @@ public async savevendor(req: Request, res: Response):Promise<any> {
             let data = await vendormanager.savevendor(req.body);
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            res.status(200);
+            res.json({ststus:200});
+           
     }
     catch (error) {
-    throw error;
+    throw error; 
     }
 }
     

@@ -7,4 +7,7 @@ export default interface iregistrationManager
     deleteuser(pkId:string):any;
     saveUser(registration:any):any
     user():any;
+    signupuser():any;
+    updateuser(registration:any,id:string):any;
+
 }

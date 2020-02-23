@@ -5,7 +5,7 @@ import registrationModel from "../../model/registrationModel";
 import  express from "express";
 import * as mongoose from 'mongoose';
 import registrationSchema  from "../../dbmodel/registrationSchema";
-
+import LoginSchema  from "../../dbmodel/loginSchema";
 @injectable()
 export default class registrationRepository implements iregistrationRepository
 {
@@ -93,6 +93,52 @@ export default class registrationRepository implements iregistrationRepository
              });
  
  
+        } catch (error) {
+            
+        } 
+    }
+    public signupuser():any
+    {
+        try{
+            alert("repository");
+            let regn=mongoose.model("Signup",LoginSchema);
+           // let reg= new regn({signupId:registration.id,userid:registration.userid,password:registration.pwd});
+            //const mongodb = require("mongodb");
+            regn.find()
+            .then(businesses => {
+             let regModel= Array<registrationModel>();
+                  businesses.map((element:any,i:number) => {
+                    console.log("Login Successfull");
+                });
+            }).catch((err:any)=>{
+                    console.log("Please signup for free");
+                });
+
+        }
+        catch(error)
+        {
+
+        }
+    }
+
+    public updateuser(registration:registrationModel, id:string):any
+    {
+        try {
+            let regn = mongoose.model("registration",registrationSchema);
+            let reg = new regn({id:registration.id,name : registration.name,code:registration.code});
+            const mongodb = require("mongodb");
+          return  regn.findById({"_id":mongodb.ObjectId(id)},(err:any,data:any)=>
+          {
+              data.id=registration.id;data.name= registration.name;data.code=registration.code;
+              console.log(data)
+              data.save().then((sc:any) => {
+                  console.log(sc);
+                console.log("update success");
+            })
+            .catch((err:any) => {
+             console.log("unable to update to database");
+             })
+          });
         } catch (error) {
             
         } 

@@ -12,11 +12,15 @@ export default  class registrationModel
         private  _name:string;
         private  _code:string;
         private _pkId:string;
+        private _userid:string;
+        private _password:string;
     constructor() {
             this._id=0;
             this._name="";
             this._code="";
             this._pkId ="";
+            this._userid="";
+            this._password="";
     }
     
 
@@ -44,5 +48,19 @@ export default  class registrationModel
     set pkId(value:string)
     {
         this._pkId=value;
+    }
+    get userid():string{
+        return this._userid;
+    }
+    set userid(value:string)
+    {
+        this._userid=value;
+    }
+    get pwd():string{
+        return this._password;
+    }
+    set pwd(value:string)
+    {
+        this._password=value;
     }
 }

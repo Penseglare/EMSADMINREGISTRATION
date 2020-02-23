@@ -12,8 +12,10 @@ import iregistrationManager from "../../business/interface/iregistrationManager"
 @injectable()
 export default class registrationController implements iregistrationController
 {
+    user() {
+        throw new Error("Method not implemented.");
+    }
         constructor() {
-        
     }
    
 public async getRegistredUserBy(req: Request, res: Response):Promise<any>
@@ -72,20 +74,41 @@ try{
         let data = await registrationManagers.saveUser(req.body);
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        res.status(200);
+        res.status(200).send("success");
 } 
 catch(error)
 {
     throw error;
 }
 }
-public user():any{
+public async updateuser(req: Request, res: Response):Promise<any>{
     try {
         let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
-        registrationManagers.user();
+        let id = String(req.params.id);
+         console.log(req.body);
+         console.log(req.params.id);
+         
+        let data = await registrationManagers.updateuser(req.body,id);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.status(200).send("success");
     } catch (error) {
         
     }
-    return null;
+}
+public async signupuser(req: Request, res: Response):Promise<any>
+{
+try{
+    console.log("HI Mahnnn");
+    let registrationManagers = containerconfig.get<iregistrationManager>(TYPES.iregistrationbusiness);
+        let data = await registrationManagers.signupuser();
+        res.header("Access-Control-Allow-Origin", '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.status(200).send("success");
+} 
+catch(error)
+{
+    throw error;
+}
 }
 }

@@ -22,6 +22,8 @@ const RegistrationSchema = new Schema({
     }
 }
 );
+
+
 //export default mongoose.model<IRegistrationSchema>('registration',RegistrationSchema);
 export default RegistrationSchema;
 //export default mongoose.model('registration',RegistrationSchema);

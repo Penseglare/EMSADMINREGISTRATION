@@ -120,7 +120,7 @@ export default class registrationRepository implements iregistrationRepository
         }
     }
 
-    public updateuser(registration:registrationModel,id:string):any
+    public updateuser(registration:registrationModel, id:string):any
     {
         try {
             let regn = mongoose.model("registration",registrationSchema);

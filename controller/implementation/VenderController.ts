@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import {Request, Response, response} from "express";
 import "reflect-metadata"; 
 import { injectable, inject,named,interfaces } from "inversify"; 
 import TYPES from "../../config/type"; 
@@ -13,7 +13,10 @@ export default class VenderController implements ivenderController
    
 public async savevendor(req: Request, res: Response):Promise<any> {
     try{
+        response.write("hi");
+        //alert(JSON.stringify(req.body));
         let vendormanager = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
+        
         //console.log(req.body);
             let data = await vendormanager.savevendor(req.body);
             res.header("Access-Control-Allow-Origin", "*");

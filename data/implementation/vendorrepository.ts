@@ -12,6 +12,7 @@ export default class vendorrepository implements ivendorrepository
     public savevendor(vendor:vendermodel):void
     {
         try {
+           
             let vendordata = mongoose.model("vendor",vendorschema);
             let insvendor = new vendordata({vendername : vendor.vendername,
                 mobilenumber :vendor.mobilenumber,
@@ -21,7 +22,7 @@ export default class vendorrepository implements ivendorrepository
                 state: vendor.state,
                 category:vendor.category
             });
-            insvendor.save().then((sc:any) => {0
+            insvendor.save().then((sc:any) => {
                 console.log("saved success");
             })
             .catch((err:any) => {

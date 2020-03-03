@@ -30,7 +30,11 @@ public registerRoute(route:express.Application):void
     route.post("/api/saveUserGroup",usergroup.saveUserGroup);
     route.put("/api/updateUserGroup/:id",usergroup.updateUserGroup);
   //  #endregion
-  
+
+    route.post("/api/savevendor",vendor.savevendor);
+    route.get("/api/getRegistredvendorById/:vendorkey",vendor.getRegistredvendorById);
+    route.get("/api/getvalue/:id",registration.getbyvalue);
+
     // route.post("/api/postRegisteredUser",this.registrationController.getRegistredUserBy);
     // route.post("/api/updateRegisteredUser",this.registrationController.getRegistredUserBy);
 }

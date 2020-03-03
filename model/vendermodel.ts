@@ -1,6 +1,6 @@
-export default  class registrationModel 
+export default  class vendorModel 
 {
-    private _id:number;
+    private _id:string;
     private _vendername:string;
     private _mobilenumber:number;
     private _emailid:string;
@@ -9,7 +9,7 @@ export default  class registrationModel
     private _state:string;
     private _category:string;
     constructor(){
-        this._id=0;
+        this._id="";
         this._vendername="";
         this._mobilenumber=0;
         this._emailid="";
@@ -17,12 +17,6 @@ export default  class registrationModel
         this._city="";
         this._state="";
         this._category="";
-    }
-    get id(): number {
-        return this._id;
-    }
-    set id(value:number){
-        this._id = value;
     }
     get vendername():string{
         return this._vendername;
@@ -61,9 +55,15 @@ export default  class registrationModel
         this._state=value;
     }
     get category():string{
-        return this._category
+        return this._category;
     }
     set category(value:string){
         this._category=value;
+    }
+    get id():string{
+        return this._id;
+    }
+    set id(value:string){
+        this._id=value;
     }
 }

@@ -18,10 +18,27 @@ export default class vendorManager implements ivendorManager
             vendorm.vendername = vendor.vendername;
             vendorm.emailid =vendor.emailid;
             vendorm.mobilenumber =vendor.mobilenumber;
+            vendorm.password=vendor.password;
+            vendorm.city=vendor.city;
+            vendorm.state=vendor.state;
+            vendorm.category=vendor.category;
             console.log(vendorm);
             let data =await registrationRepositorydata.savevendor(vendorm);
         } catch (error) {
     
+        }
+    }
+    public async getRegistredvendorById(vendorkey:string): Promise<any>
+    {
+
+        try {
+            let vendorRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
+            let data =await vendorRepositorydata.getRegistredvendorById(vendorkey);
+            console.log(data);
+            return data;
+            
+        } catch (error) {
+            throw error;
         }
     }
 }

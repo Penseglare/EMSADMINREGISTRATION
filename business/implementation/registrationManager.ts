@@ -110,6 +110,17 @@ public async updateuser(registration:any,id:string): Promise<any>{
 
     }
 }
-  
+  public async getbyvalue(id:number):Promise<any>
+  {
+    try {
+        let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+        let data =await registrationRepositorydata.getbyvalue(id);
+        //console.log(data);
+        return data;
+        
+    } catch (error) {
+        throw error;
+    }
+  }
 
 }

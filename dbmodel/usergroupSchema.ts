@@ -14,7 +14,7 @@ const UsergroupSchema = new Schema({
     },
     groupname: {
         type: String,
-        required: 'Enter user group name'
+       // required: 'Enter user group name'
     },
     groupdescription: {
         type: String,

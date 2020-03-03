@@ -1,39 +1,38 @@
 import "reflect-metadata"; 
 import { injectable, inject,named,interfaces } from "inversify"; 
 import TYPES from "../../config/type"; 
- import  containerconfig from "../../config/containerconfig";
-
+import  containerconfig from "../../config/containerconfig";
 import iusergroupManager from "../interface/iusergroupManager";
-import iregistrationRepository from "../../data/interface/iregistrationRepository";
-import registrationModel from "../../model/registrationModel"; 
 
+import iusergroupRepository from "../../data/interface/iusergroupRepository";
+import usergroupModel from "../../model/usergroupModel"; 
 
 import mongoose from 'mongoose';
-import  UsergroupSchema  from '../../dbmodel/UsergroupSchema';
+import  usergroupSchema  from '../../dbmodel/UsergroupSchema';
 
 
 @injectable()
 export default class usergroupManager implements iusergroupManager
 {
-
-    public async getRegistredUserBy():Promise<any>
+    
+    public async getUserGroup():Promise<any>
     {
 
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data = await registrationRepositorydata.getRegistredUserBy();
+            let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
+            let data = await usergroupRepositorydata.getUserGroup();
             return data;
             
         } catch (error) {
             throw error;
         }
     } 
-    public async getRegistredUserById(pkId:string): Promise<any>
+    public async getUserGroupById(pkId:string): Promise<any>
     {
 
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data =await registrationRepositorydata.getRegistredUserById(pkId);
+            let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
+            let data =await usergroupRepositorydata.getUserGroupById(pkId);
             console.log(data);
             return data;
             
@@ -45,8 +44,8 @@ export default class usergroupManager implements iusergroupManager
     {
 
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data =await registrationRepositorydata.deleteuser(pkId);
+            let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
+            let data =await usergroupRepositorydata.deleteUserGroup(pkId);
             console.log(data);
             return data;
             
@@ -54,57 +53,31 @@ export default class usergroupManager implements iusergroupManager
             throw error;
         }
     } 
-    public async saveUserGroup(registration:any):Promise<void>
+    public async saveUserGroup(usergroup:any):Promise<void>
     {
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let reg = new registrationModel();
-            reg.name = registration._name;
-            reg.code =registration._code;
-            reg.id =registration._id;
-            console.log(reg);
-            let data =await registrationRepositorydata.saveUser(reg);
+            let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
+            let usergrp = new usergroupModel();
+            usergrp.groupname = usergroup._groupname;
+            usergrp.groupid =usergroup._groupid;
+            usergrp.groupdescription =usergroup._groupdescription;
+            usergrp.exportreport=usergroup._exportreport;
+            console.log(usergrp);
+            let data =await usergroupRepositorydata.saveUserGroup(usergrp);
         } catch (error) {
     
         }
     }
-
-    public user():any{
-    return null;
-    }
-    public async signupuser():Promise<any>
-    {
-        try
-        {
-            alert("HI Mahnnn");
-            let registrationRepositorydata= containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data = await registrationRepositorydata.getRegistredUserBy();
-            return data;
-            //console.log(reg);
-            //let data=await registrationRepositorydata.signupuser(reg);
-        }
-        catch(error)
-        {
-
-        }
-    }
-
-
-    // public saveUser(registrationModel: registrationModel):void
-    // {
-    //    let regnn = new RegistrationSchema();
-    //     const regn = new mongoose.model('registration',RegistrationSchema);
-    //       registrationModel.code
-    // }
-public async updateuser(registration:any,id:string): Promise<any>{
+    public async updateUserGroup(usergroup:any,id:string): Promise<any>{
     try {
-        let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-        let reg = new registrationModel();
-        reg.name = registration._name;
-        reg.code =registration._code;
-        reg.id =registration._id;
-        console.log(reg);
-        let data =await registrationRepositorydata.updateuser(reg,id);
+        let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
+        let usergrp = new usergroupModel();
+        usergrp.groupname = usergroup._groupname;
+        usergrp.groupid =usergroup._groupid;
+        usergrp.groupdescription =usergroup._groupdescription;
+        usergrp.exportreport=usergroup._exportreport;
+        console.log(usergrp);
+        let data =await usergroupRepositorydata.updateUserGroup(usergrp,id);
     } catch (error) {
 
     }

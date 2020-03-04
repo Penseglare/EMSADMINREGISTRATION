@@ -13,7 +13,7 @@ export default class VenderController implements ivenderController
    
 public async savevendor(req: Request, res: Response):Promise<any> {
     try{
-        response.write("hi");
+        //response.write("hi");
         //alert(JSON.stringify(req.body));
         let vendormanager = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
         
@@ -21,8 +21,8 @@ public async savevendor(req: Request, res: Response):Promise<any> {
             let data = await vendormanager.savevendor(req.body);
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            //res.status(200);
-            res.json({resp:data});
+            res.status(200);
+            //res.json({resp:data});
            
     }
     catch (error) {

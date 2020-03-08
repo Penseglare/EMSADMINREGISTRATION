@@ -7,13 +7,11 @@ import iregistrationManager from "../interface/iregistrationManager";
 // import registrationRepository from "../../data/implementation/registrationRepository";
 import iregistrationRepository from "../../data/interface/iregistrationRepository";
 import registrationModel from "../../model/registrationModel"; 
-
-
-import mongoose from 'mongoose';
-import  RegistrationSchema  from '../../dbmodel/registrationSchema';
+import sealed from "../../util/decorators/sealedClassDecorator";
 
 
 @injectable()
+@sealed.sealed
 export default class registrationManager implements iregistrationManager
 {
 

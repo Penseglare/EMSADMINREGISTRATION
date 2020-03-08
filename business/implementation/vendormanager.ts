@@ -15,13 +15,13 @@ export default class vendorManager implements ivendorManager
         try {
             let registrationRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
             let vendorm = new vendorModel();
-            vendorm.vendername = vendor.vendername;
-            vendorm.emailid =vendor.emailid;
-            vendorm.mobilenumber =vendor.mobilenumber;
-            vendorm.password=vendor.password;
-            vendorm.city=vendor.city;
-            vendorm.state=vendor.state;
-            vendorm.category=vendor.category;
+            vendorm.vendername = vendor._vendername;
+            vendorm.emailid =vendor._emailid;
+            vendorm.mobilenumber =vendor._mobilenumber;
+            vendorm.password=vendor._password;
+            vendorm.city=vendor._city;
+            vendorm.state=vendor._state;
+            vendorm.category=vendor._category;
             console.log(vendorm);
             let data =await registrationRepositorydata.savevendor(vendorm);
         } catch (error) {
@@ -32,6 +32,8 @@ export default class vendorManager implements ivendorManager
     {
 
         try {
+           // console.log('ghdghghd');
+            console.log(vendorkey);
             let vendorRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
             let data =await vendorRepositorydata.getRegistredvendorById(vendorkey);
             console.log(data);

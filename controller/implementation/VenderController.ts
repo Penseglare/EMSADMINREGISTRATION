@@ -6,6 +6,7 @@ import  containerconfig from "../../config/containerconfig";
 import vendermodel from "../../model/vendermodel"
 import ivenderController from "../interface/ivenderController";
 import ivendormanager from "../../business/interface/ivendorManager";
+import { Server } from "mongodb";
 
 @injectable()
 export default class VenderController implements ivenderController
@@ -34,6 +35,9 @@ public async getRegistredvendorById(req: Request, res: Response): Promise<any>
 try{
     let vendorManagers = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
     let vendorkey = String(req.params.vendorkey);
+    console.log('vendorkey');
+
+    console.log(vendorkey);
         let data = await vendorManagers.getRegistredvendorById(vendorkey);
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

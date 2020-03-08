@@ -42,6 +42,7 @@ export default class vendorrepository implements ivendorrepository
             const mongodb = require("mongodb");
             // console.log(query);
             // return vendordata.find(query)
+            console.log('hihihihih');
             console.log(vendorkey);
             return vendordata.findOne({"emailid": vendorkey})
             .then((v:any)=>{

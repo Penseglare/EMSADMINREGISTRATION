@@ -32,6 +32,8 @@ export default class vendorManager implements ivendorManager
     {
 
         try {
+           // console.log('ghdghghd');
+            console.log(vendorkey);
             let vendorRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
             let data =await vendorRepositorydata.getRegistredvendorById(vendorkey);
             console.log(data);

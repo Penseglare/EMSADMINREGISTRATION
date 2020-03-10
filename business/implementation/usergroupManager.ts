@@ -8,7 +8,7 @@ import iusergroupRepository from "../../data/interface/iusergroupRepository";
 import usergroupModel from "../../model/usergroupModel"; 
 
 import mongoose from 'mongoose';
-import  usergroupSchema  from '../../dbmodel/UsergroupSchema';
+import  usergroupSchema  from '../../dbmodel/usergroupSchema';
 
 
 @injectable()

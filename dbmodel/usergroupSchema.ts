@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 //   }
   
 const Schema = mongoose.Schema;
-const UsergroupSchema = new Schema({
+const usergroupSchema = new Schema({
     usergroupid: {
         type: Number            
     },
@@ -29,5 +29,5 @@ const UsergroupSchema = new Schema({
 
 
 //export default mongoose.model<IRegistrationSchema>('registration',RegistrationSchema);
-export default UsergroupSchema;
+export default usergroupSchema;
 //export default mongoose.model('registration',RegistrationSchema);

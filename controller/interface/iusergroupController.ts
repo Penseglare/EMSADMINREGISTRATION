@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-export default interface usergroupController
+export default interface iusergroupController
 {
     getUserGroup(req: Request, res: Response):any;
     getUserGroupById(req: Request, res: Response):any;

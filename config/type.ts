@@ -10,6 +10,7 @@ const TYPES = {
     ivendor:Symbol("ivender"),
     ivendorbusiness:Symbol("ivendorbussiness"),
     ivendorrepo:Symbol("ivendorrepo")
+    
 
       }; 
 

@@ -7,7 +7,7 @@ const TYPES = {
     iusergroupbusiness: Symbol("iusergroupbusiness"),
     iusergrouprepo: Symbol("iusergrouprepo"),
 
-    ivendor:Symbol("ivender"),
+    ivendor:Symbol("ivendor"),
     ivendorbusiness:Symbol("ivendorbussiness"),
     ivendorrepo:Symbol("ivendorrepo")
     

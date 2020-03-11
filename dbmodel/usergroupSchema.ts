@@ -18,7 +18,7 @@ const usergroupSchema = new Schema({
     },
     groupdescription: {
         type: String,
-        required: 'Enter user group description'
+        //required: 'Enter user group description'
     },
     exportreport: {
         type: String,

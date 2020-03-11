@@ -64,7 +64,7 @@ catch(error)
 public async saveUserGroup(req: Request, res: Response): Promise<any>
 {
 try{
-    let usergroupManagers = containerconfig.get<iusergroupManager>(TYPES.iregistrationbusiness);
+    let usergroupManagers = containerconfig.get<iusergroupManager>(TYPES.iusergroupbusiness);
     console.log(req.body);
         let data = await usergroupManagers.saveUserGroup(req.body);
         res.header("Access-Control-Allow-Origin", "*");
@@ -78,7 +78,7 @@ catch(error)
 }
 public async updateUserGroup(req: Request, res: Response):Promise<any>{
     try {
-        let usergroupManagers = containerconfig.get<iusergroupManager>(TYPES.iregistrationbusiness);
+        let usergroupManagers = containerconfig.get<iusergroupManager>(TYPES.iusergroupbusiness);
         let id = String(req.params.id);
          console.log(req.body);
          console.log(req.params.id);

@@ -1,4 +1,4 @@
-import vendormodel from "../../model/registrationModel"; 
+import vendormodel from "../../model/vendermodel"; 
 
 export default interface ivendormanager
 {

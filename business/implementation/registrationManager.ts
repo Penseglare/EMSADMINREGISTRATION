@@ -114,9 +114,9 @@ public async updateuser(registration:any,id:string): Promise<any>{
   {
     try {
         let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-        let data =await registrationRepositorydata.getbyvalue(id);
+        //let data =await registrationRepositorydata.getbyvalue(id);
         //console.log(data);
-        return data;
+        return null;
         
     } catch (error) {
         throw error;

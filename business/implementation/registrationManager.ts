@@ -121,4 +121,4 @@ public async updateuser(registration:any,id:string): Promise<any>{
     }
   }
 
-}
+} 

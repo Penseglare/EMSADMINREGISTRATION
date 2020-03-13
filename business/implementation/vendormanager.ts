@@ -43,4 +43,15 @@ export default class vendorManager implements ivendorManager
             throw error;
         }
     }
+    public async getallRegistredvendors(): Promise<any>
+    {
+        try {
+            let vendorRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
+            let data =await vendorRepositorydata.getallRegistredvendors();
+            return data;
+            
+        } catch (error) {
+            throw error;
+        }
+    }
 }

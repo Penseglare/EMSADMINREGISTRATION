@@ -4,7 +4,10 @@ const TYPES = {
     iregistrationrepo: Symbol("iregistrationrepo"),
     ivendor:Symbol("ivender"),
     ivendorbusiness:Symbol("ivendorbussiness"),
-    ivendorrepo:Symbol("ivendorrepo")
+    ivendorrepo:Symbol("ivendorrepo"),
+    iuser:Symbol("iuser"),
+    iuserbusiness:Symbol("iuserbusiness"),
+    iuserrepo:Symbol("iuserrepo"),
       }; 
 
       export default TYPES;

@@ -7,13 +7,11 @@ import iregistrationManager from "../interface/iregistrationManager";
 // import registrationRepository from "../../data/implementation/registrationRepository";
 import iregistrationRepository from "../../data/interface/iregistrationRepository";
 import registrationModel from "../../model/registrationModel"; 
-
-
-import mongoose from 'mongoose';
-import  RegistrationSchema  from '../../dbmodel/registrationSchema';
+import sealed from "../../util/decorators/sealedClassDecorator";
 
 
 @injectable()
+@sealed.sealed
 export default class registrationManager implements iregistrationManager
 {
 
@@ -110,6 +108,17 @@ public async updateuser(registration:any,id:string): Promise<any>{
 
     }
 }
-  
+  public async getbyvalue(id:number):Promise<any>
+  {
+    try {
+        let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+        let data =await registrationRepositorydata.getbyvalue(id);
+        //console.log(data);
+        return data;
+        
+    } catch (error) {
+        throw error;
+    }
+  }
 
-}
+} 

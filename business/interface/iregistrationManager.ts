@@ -9,5 +9,5 @@ export default interface iregistrationManager
     user():any;
     signupuser():any;
     updateuser(registration:any,id:string):any;
-
+    getbyvalue(id:number):any;
 }

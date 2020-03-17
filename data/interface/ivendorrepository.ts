@@ -1,6 +1,8 @@
 import vendorModel from "../../model/vendermodel";
 
-export default interface iregistrationRepository
+export default interface ivendorrepository
 {
     savevendor(vendor:vendorModel):void
+    getRegistredvendorById(vendorkey:string):any;
+    getallRegistredvendors():any;
 }

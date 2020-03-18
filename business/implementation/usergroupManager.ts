@@ -58,12 +58,12 @@ export default class usergroupManager implements iusergroupManager
         try {
             let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
             let usergrp = new usergroupModel();
-            console.log(usergroup);
-            usergrp.groupname = usergroup._groupname;
-            usergrp.groupid =usergroup._groupid;
-            usergrp.groupdescription =usergroup._groupdescription;
-            usergrp.exportreport=usergroup._exportreport;
-            console.log(usergrp);
+             console.log(usergroup);
+            usergrp.groupname = usergroup._usergroupname;
+            usergrp.groupid =usergroup._id;
+            usergrp.groupdescription =usergroup._usergroupdescription;
+            usergrp.exportreport=usergroup._exportreports;
+            // console.log(usergrp);
             let data =await usergroupRepositorydata.saveUserGroup(usergrp);
         } catch (error) {
     

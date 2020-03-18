@@ -19,12 +19,13 @@ export default class usergroupRepository implements iusergroupRepository
                         let usergroup_Model= Array<usergroupModel>();
                              businesses.map((element:any,i:number) => {
                             let re =new usergroupModel();
-                            re.groupid = element._groupid,
+                            re.groupid = element._id,
                             re.groupname=element.groupname;
                             re.groupdescription=element.groupdescription;
                             re.exportreport=element.exportreport;
                             usergroup_Model.push(re);
                            });
+                           console.log(usergroup_Model);
                              return  usergroup_Model;
               })
               .catch(err => {
@@ -78,6 +79,7 @@ export default class usergroupRepository implements iusergroupRepository
     public saveUserGroup(usergroup:usergroupModel):void
     {
         try {
+            console.log(usergroup);
             let user_group = mongoose.model("usergroup",usergroup_Schema);
             let usergroup_ = new user_group({groupid:usergroup.groupid,groupname : usergroup.groupname,groupdescription:usergroup.groupdescription,exportreport:usergroup.exportreport});
             usergroup_.save().then((sc:any) => {

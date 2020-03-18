@@ -22,7 +22,7 @@ export default class vendorManager implements ivendorManager
             vendorm.city=vendor.city;
             vendorm.state=vendor.state;
             vendorm.category=vendor.category;
-            console.log(vendorm);
+            console.log(vendor);
             let data =await registrationRepositorydata.savevendor(vendorm);
         } catch (error) {
     
@@ -32,9 +32,22 @@ export default class vendorManager implements ivendorManager
     {
 
         try {
+           // console.log('ghdghghd');
+            console.log(vendorkey);
             let vendorRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
             let data =await vendorRepositorydata.getRegistredvendorById(vendorkey);
             console.log(data);
+            return data;
+            
+        } catch (error) {
+            throw error;
+        }
+    }
+    public async getallRegistredvendors(): Promise<any>
+    {
+        try {
+            let vendorRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
+            let data =await vendorRepositorydata.getallRegistredvendors();
             return data;
             
         } catch (error) {

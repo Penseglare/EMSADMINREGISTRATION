@@ -5,6 +5,7 @@ import vendermodel from "../../model/vendermodel";
 import  express from "express";
 import * as mongoose from 'mongoose';
 import vendorschema  from "../../dbmodel/vendorschema";
+import vendorModel from "../../model/vendermodel";
 
 @injectable()
 export default class vendorrepository implements ivendorrepository
@@ -12,6 +13,7 @@ export default class vendorrepository implements ivendorrepository
     public savevendor(vendor:vendermodel):void
     {
         try {
+           
             let vendordata = mongoose.model("vendor",vendorschema);
             let insvendor = new vendordata({vendername : vendor.vendername,
                 mobilenumber :vendor.mobilenumber,
@@ -21,7 +23,7 @@ export default class vendorrepository implements ivendorrepository
                 state: vendor.state,
                 category:vendor.category
             });
-            insvendor.save().then((sc:any) => {0
+            insvendor.save().then((sc:any) => {
                 console.log("saved success");
             })
             .catch((err:any) => {
@@ -41,10 +43,12 @@ export default class vendorrepository implements ivendorrepository
             const mongodb = require("mongodb");
             // console.log(query);
             // return vendordata.find(query)
-            return vendordata.findById({"_id":mongodb.ObjectId(vendorkey)})
+            console.log('hihihihih');
+            console.log(vendorkey);
+            return vendordata.findOne({"emailid": vendorkey})
             .then((v:any)=>{
                 let mvendor =new vendermodel();
-                mvendor.id = v.id;
+               // mvendor._id = v.id;
                 mvendor.vendername =v.vendername;
                 mvendor.emailid =v.emailid;
                 mvendor.mobilenumber=v.mobilenumber;
@@ -56,6 +60,37 @@ export default class vendorrepository implements ivendorrepository
             }).catch(err => {
                 console.error(err)
               });
+           //console.log(data);
+        } catch (error) {
+            throw error;
+        }
+    } 
+    public getallRegistredvendors():any
+    {
+        try {
+            let vendordata = mongoose.model("vendor",vendorschema);
+            const mongodb = require("mongodb");
+            return vendordata.find()
+                       .then(businesses => {
+                        let vendmodel= Array<vendorModel>();
+                             businesses.map((element:any,i:number) => {
+                                let mvendor =new vendermodel();
+                                mvendor.id=element._id;
+                                mvendor.vendername =element.vendername;
+                                mvendor.emailid =element.emailid;
+                                mvendor.mobilenumber=element.mobilenumber;
+                                mvendor.city=element.city;
+                                mvendor.password=element.password;
+                                mvendor.state=element.state;
+                                mvendor.category=element.category;
+                                vendmodel.push(mvendor);
+                           });
+                           
+                           return vendmodel;
+              })
+              .catch(err => {
+                console.error(err)
+              })
            //console.log(data);
         } catch (error) {
             throw error;

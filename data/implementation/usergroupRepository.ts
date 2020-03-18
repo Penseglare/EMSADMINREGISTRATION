@@ -44,8 +44,9 @@ export default class usergroupRepository implements iusergroupRepository
             return usergroup.findById({"_id":mongodb.ObjectId(pkId)})
             .then((v:any)=>{
                 let user =new usergroupModel();
-                user.groupid = v._groupid,
-                user.groupname=v.groupname;user.groupdescription=v.groupdescription;
+                user.groupid = v._id,
+                user.groupname=v.groupname;
+                user.groupdescription=v.groupdescription;
                 user.exportreport=v.exportreport;
                 console.log(user);
                 return user;

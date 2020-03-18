@@ -15,6 +15,7 @@ export default class usergroupRepository implements iusergroupRepository
            let usergroup = mongoose.model("usergroup",usergroup_Schema);
             return usergroup.find()
                        .then(businesses => {
+                           console.log(businesses);
                         let usergroup_Model= Array<usergroupModel>();
                              businesses.map((element:any,i:number) => {
                             let re =new usergroupModel();

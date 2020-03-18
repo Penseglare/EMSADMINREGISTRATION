@@ -66,7 +66,8 @@ public async saveUserGroup(req: Request, res: Response): Promise<any>
 try{
     let usergroupManagers = containerconfig.get<iusergroupManager>(TYPES.iregistrationbusiness);
     console.log(req.body);
-        let data = await usergroupManagers.saveUserGroup(req.body);
+        // let data = await usergroupManagers.saveUserGroup(req.body);
+       await usergroupManagers.saveUserGroup(req.body);
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.status(200).send("success");

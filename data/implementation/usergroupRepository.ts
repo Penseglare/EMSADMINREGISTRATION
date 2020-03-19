@@ -102,7 +102,7 @@ export default class usergroupRepository implements iusergroupRepository
             let user_group = mongoose.model("usergroup",usergroup_Schema);
             let usergroup_ = new user_group({groupid:usergroup.groupid,groupname : usergroup.groupname,groupdescription:usergroup.groupdescription,exportreport:usergroup.exportreport});
             const mongodb = require("mongodb");
-          return  user_group.findById({"_groupid":mongodb.ObjectId(id)},(err:any,data:any)=>
+          return  user_group.findById({"_id":mongodb.ObjectId(id)},(err:any,data:any)=>
           {
               data.groupid=usergroup.groupid;data.groupname= usergroup.groupname;data.groupdescription=usergroup.groupdescription;data.exportreport=usergroup.exportreport;
               console.log(data)

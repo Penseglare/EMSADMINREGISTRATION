@@ -26,14 +26,14 @@ export default class vendorManager implements ivendorManager
             let data =await registrationRepositorydata.savevendor(vendorm);
         } catch (error) {
     
-        }
+        } 
     }
     public async getRegistredvendorById(vendorkey:string): Promise<any>
     {
 
         try {
            // console.log('ghdghghd');
-            console.log(vendorkey);
+            //console.log(vendorkey);
             let vendorRepositorydata  = containerconfig.get<ivendorrepository>(TYPES.ivendorrepo);
             let data =await vendorRepositorydata.getRegistredvendorById(vendorkey);
             console.log(data);

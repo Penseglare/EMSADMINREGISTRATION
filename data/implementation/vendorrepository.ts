@@ -43,7 +43,7 @@ export default class vendorrepository implements ivendorrepository
             console.log(vendorkey);
         return vendordata.findOne({"emailid": vendorkey.trim()})
             .then((v:any)=>{
-                console.log(v);
+                console.log(v  );
                // mvendor._id = v.id;
                 mvendor.vendername =v.vendername;
                 mvendor.emailid =v.emailid;

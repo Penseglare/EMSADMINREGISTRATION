@@ -40,9 +40,10 @@ export default class vendorrepository implements ivendorrepository
         try {
             let vendordata = mongoose.model("vendors",vendorschema);
             let mvendor =new vendermodel();
-            return vendordata.findOne({"emailid": vendorkey})
+            console.log(vendorkey);
+        return vendordata.findOne({"emailid": vendorkey.trim()})
             .then((v:any)=>{
-               
+                console.log(v);
                // mvendor._id = v.id;
                 mvendor.vendername =v.vendername;
                 mvendor.emailid =v.emailid;

@@ -1,4 +1,9 @@
+import "reflect-metadata"; 
+import { injectable, inject,named,interfaces } from "inversify";
+
 import igenericRepository from "../interface/igenericRepository";
+
+@injectable()
 export default class genericRepository<T,Tobj> implements igenericRepository<T,Tobj>
 {
    public save<T>(input: T): T {

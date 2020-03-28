@@ -4,16 +4,15 @@ import iregistrationRepository from "../interface/iregistrationRepository";
 import registrationModel from "../../model/registrationModel";
 import  express from "express";
 import * as mongoose from 'mongoose';
-import registrationSchema  from "../../dbmodel/registrationSchema";
-import LoginSchema  from "../../dbmodel/loginSchema";
+import mongodb from 'mongodb';
+import globalModel  from "../../dbmodel/globalModel";
 @injectable()
 export default class registrationRepository implements iregistrationRepository
 {
     public getRegistredUserBy():any
     {
         try {
-           let regn = mongoose.model("registration",registrationSchema);
-            return regn.find()
+            return globalModel.regn.find()
                        .then(businesses => {
                         let regModel= Array<registrationModel>();
                              businesses.map((element:any,i:number) => {
@@ -36,10 +35,10 @@ export default class registrationRepository implements iregistrationRepository
     public getRegistredUserById(pkId:string):any
     {
         try {
-            let regn = mongoose.model("registration",registrationSchema);
+            
             //pkId = "5e403b0c21c3db2c080fd267";
-            const mongodb = require("mongodb");
-            return regn.findById({"_id":mongodb.ObjectId(pkId)})
+            // const mongodb = require("mongodb");
+            return globalModel.regn.findById({"_id":new mongodb.ObjectId(pkId)})
             .then((v:any)=>{
                 let re =new registrationModel();
                 re.pkId = v._id,
@@ -57,10 +56,9 @@ export default class registrationRepository implements iregistrationRepository
     public deleteuser(pkId:string):any
     {
         try {
-            let regn = mongoose.model("registration",registrationSchema);
             //pkId = "5e403b0c21c3db2c080fd267";
-            const mongodb = require("mongodb");
-            return regn.findByIdAndRemove({"_id":mongodb.ObjectId(pkId)})
+            // const mongodb = require("mongodb");
+            return globalModel.regn.findByIdAndRemove({"_id":new mongodb.ObjectId(pkId)})
             //.find()
             .then(businesses => {
              let regModel= Array<registrationModel>();
@@ -83,8 +81,8 @@ export default class registrationRepository implements iregistrationRepository
     public saveUser(registration:registrationModel):void
     {
         try {
-            let regn = mongoose.model("registration",registrationSchema);
-            let reg = new regn({id:registration.id,name : registration.name,code:registration.code});
+            // let regn = mongoose.model("registration",registrationSchema);
+            let reg = new globalModel.regn({id:registration.id,name : registration.name,code:registration.code});
                      reg.save().then((sc:any) => {
                 console.log("saved success");
             })
@@ -101,10 +99,10 @@ export default class registrationRepository implements iregistrationRepository
     {
         try{
             alert("repository");
-            let regn=mongoose.model("Signup",LoginSchema);
+            // let login=mongoose.model("Signup",LoginSchema);
            // let reg= new regn({signupId:registration.id,userid:registration.userid,password:registration.pwd});
             //const mongodb = require("mongodb");
-            regn.find()
+            globalModel.login.find()
             .then(businesses => {
              let regModel= Array<registrationModel>();
                   businesses.map((element:any,i:number) => {
@@ -124,10 +122,10 @@ export default class registrationRepository implements iregistrationRepository
     public updateuser(registration:registrationModel, id:string):any
     {
         try {
-            let regn = mongoose.model("registration",registrationSchema);
-            let reg = new regn({id:registration.id,name : registration.name,code:registration.code});
+            // let regn = mongoose.model("registration",registrationSchema);
+            let reg = new globalModel.login({id:registration.id,name : registration.name,code:registration.code});
             const mongodb = require("mongodb");
-          return  regn.findById({"_id":mongodb.ObjectId(id)},(err:any,data:any)=>
+          return  globalModel.login.findById({"_id":mongodb.ObjectId(id)},(err:any,data:any)=>
           {
               data.id=registration.id;data.name= registration.name;data.code=registration.code;
               console.log(data)
@@ -146,10 +144,10 @@ export default class registrationRepository implements iregistrationRepository
 public getbyvalue(id:number):any
 {
     try {
-        let regn = mongoose.model("registration",registrationSchema);
+        // let regn = mongoose.model("registration",registrationSchema);
         console.log(id);
         let re =new registrationModel();
-         return regn.findOne({"id":id})
+         return globalModel.regn.findOne({"id":id})
          .then((v:any)=>{
             re.pkId = v._id;
             re.id = v.id;

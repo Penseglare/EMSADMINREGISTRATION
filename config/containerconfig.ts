@@ -31,12 +31,15 @@ import iregistrationrepo from "../data/interface/iregistrationRepository";
 import iusergrouprepo from "../data/interface/iusergroupRepository";
 import ivendorrep from "../data/interface/ivendorrepository";
 import iuserrepo from "../data/interface/iuserRepository";
+import igenericRepo from "../data/interface/igenericRepository";
 
 //data implementation
 import registrationrepo from "../data/implementation/registrationRepository";
 import usergrouprepo from "../data/implementation/usergroupRepository";
 import vendorrepo from "../data/implementation/vendorrepository";
 import userrepo from "../data/implementation/userRepository";
+
+import genericRepo from "../data/implementation/genericRepository";
 
 const container = new Container();
 
@@ -57,5 +60,7 @@ container.bind<iregistrationrepo>(TYPES.iregistrationrepo).to(registrationrepo);
 container.bind<iusergrouprepo>(TYPES.iusergrouprepo).to(usergrouprepo);
 container.bind<ivendorrep>(TYPES.ivendorrepo).to(vendorrepo)
 container.bind<iuserrepo>(TYPES.iuserrepo).to(userrepo);
+
+container.bind<igenericRepo>(TYPES.igenericRepo).to(genericRepo);
 
 export default container;

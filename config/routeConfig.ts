@@ -1,6 +1,8 @@
 import  express from "express";
 import  containerconfig from "./containerconfig";
 import TYPES from "./type";
+import "reflect-metadata"; 
+import { injectable, inject,named,interfaces } from "inversify"; 
 import {Request, Response} from "express";
 //import registrationController from "../controller/implementation/registrationController";
 import iregistrationController from "../controller/interface/iregistrationController";
@@ -8,9 +10,14 @@ import iusergroupController from "../controller/interface/iusergroupController";
 
 import ivenderController from "../controller/interface/ivenderController";
 
+@injectable()
 export default class routeConfig
 {
     //public registrationController:registrationController=new registrationController();
+    // private _iregistrationController:iregistrationController;
+    // constructor(@inject(TYPES.iregistration) iregistrationController:iregistrationController) {
+    //   this._iregistrationController = iregistrationController;
+    // }
 public registerRoute(route:express.Application):void
 {
     let registration = containerconfig.get<iregistrationController>(TYPES.iregistration);

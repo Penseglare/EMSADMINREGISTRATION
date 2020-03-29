@@ -1,19 +1,27 @@
 import "reflect-metadata"; 
 import { injectable, inject,named,interfaces } from "inversify";
+import TYPES from "../../config/type"; 
+ import  containerconfig from "../../config/containerconfig";
+
 import iregistrationRepository from "../interface/iregistrationRepository";
 import registrationModel from "../../model/registrationModel";
-import  express from "express";
-import * as mongoose from 'mongoose';
 import mongodb from 'mongodb';
 import globalModel  from "../../dbmodel/globalModel";
+import igenericRepo  from "../interface/igenericRepository";
+
 @injectable()
 export default class registrationRepository implements iregistrationRepository
 {
+      private _igenericRepo:igenericRepo;
+    constructor(@inject(TYPES.igenericRepo) igenericRepo: igenericRepo) {
+       this._igenericRepo=igenericRepo;
+    }
+
     public getRegistredUserBy():any
     {
         try {
-            return globalModel.regn.find()
-                       .then(businesses => {
+            return this._igenericRepo.get(globalModel.regn)
+                       .then((businesses:any) => {
                         let regModel= Array<registrationModel>();
                              businesses.map((element:any,i:number) => {
                             let re =new registrationModel();
@@ -24,7 +32,7 @@ export default class registrationRepository implements iregistrationRepository
                            
                              return regModel;
               })
-              .catch(err => {
+              .catch((err:any) => {
                 console.error(err)
               })
         }
@@ -35,20 +43,17 @@ export default class registrationRepository implements iregistrationRepository
     public getRegistredUserById(pkId:string):any
     {
         try {
-            
-            //pkId = "5e403b0c21c3db2c080fd267";
-            // const mongodb = require("mongodb");
-            return globalModel.regn.findById({"_id":new mongodb.ObjectId(pkId)})
+          
+            return this._igenericRepo.getById(globalModel.regn,pkId)
             .then((v:any)=>{
                 let re =new registrationModel();
                 re.pkId = v._id,
                 re.id = v.id;re.name=v.name;re.code=v.code;
                 console.log(re);
                 return re;
-            }).catch(err => {
+            }).catch((err:any) => {
                 console.error(err)
               });
-           //console.log(data);
         } catch (error) {
             throw error;
         }
@@ -58,9 +63,9 @@ export default class registrationRepository implements iregistrationRepository
         try {
             //pkId = "5e403b0c21c3db2c080fd267";
             // const mongodb = require("mongodb");
-            return globalModel.regn.findByIdAndRemove({"_id":new mongodb.ObjectId(pkId)})
+            return this._igenericRepo.delete(globalModel.regn,pkId)
             //.find()
-            .then(businesses => {
+            .then((businesses:any) => {
              let regModel= Array<registrationModel>();
         //  businesses.map((element:any,i:number) => {
         //          let re =new registrationModel();
@@ -70,7 +75,7 @@ export default class registrationRepository implements iregistrationRepository
         //         });
                 //console.log(businesses);
                   return regModel;
-            }).catch(err => {
+            }).catch((err:any) => {
                 console.error(err)
               });
            //console.log(data);
@@ -82,14 +87,22 @@ export default class registrationRepository implements iregistrationRepository
     {
         try {
             // let regn = mongoose.model("registration",registrationSchema);
-            let reg = new globalModel.regn({id:registration.id,name : registration.name,code:registration.code});
-                     reg.save().then((sc:any) => {
-                console.log("saved success");
-            })
-            .catch((err:any) => {
-             console.log("unable to save to database");
-             });
- 
+             let inputObject ={id:registration.id,name : registration.name,code:registration.code};
+            // let reg = new globalModel.regn({id:registration.id,name : registration.name,code:registration.code});
+            //          reg.save().then((sc:any) => {
+            //     console.log("saved success");
+            // })
+            // .catch((err:any) => {
+            //  console.log("unable to save to database");
+            //  });
+
+            
+          this._igenericRepo.save(globalModel.regn,inputObject).then((sc:any) => {
+        console.log("saved success");
+             })
+              .catch((err:any) => {
+              console.log("unable to save to database");
+              });
  
         } catch (error) {
             
@@ -123,20 +136,28 @@ export default class registrationRepository implements iregistrationRepository
     {
         try {
             // let regn = mongoose.model("registration",registrationSchema);
-            let reg = new globalModel.login({id:registration.id,name : registration.name,code:registration.code});
-            const mongodb = require("mongodb");
-          return  globalModel.login.findById({"_id":mongodb.ObjectId(id)},(err:any,data:any)=>
-          {
-              data.id=registration.id;data.name= registration.name;data.code=registration.code;
-              console.log(data)
-              data.save().then((sc:any) => {
-                  console.log(sc);
+            // let reg = new globalModel.regn({id:registration.id,name : registration.name,code:registration.code});
+        //   return  globalModel.login.findById({"_id":new mongodb.ObjectId(id)},(err:any,data:any)=>
+        //   {
+        //       data.id=registration.id;data.name= registration.name;data.code=registration.code;
+        //       console.log(data)
+        //       data.save().then((sc:any) => {
+        //           console.log(sc);
+        //         console.log("update success");
+        //     })
+        //     .catch((err:any) => {
+        //      console.log("unable to update to database");
+        //      })
+        //   });
+        return  this._igenericRepo.getById(globalModel.regn,id).then((data:any)=>{
+            data.id=registration.id;data.name= registration.name;data.code=registration.code;
+           return this._igenericRepo.update(globalModel.regn,data,id).then((u:any) => {
                 console.log("update success");
             })
-            .catch((err:any) => {
-             console.log("unable to update to database");
-             })
-          });
+                .catch((err:any) => {
+                 console.log("unable to update to database");
+                 });
+        })
         } catch (error) {
             
         } 
@@ -144,10 +165,9 @@ export default class registrationRepository implements iregistrationRepository
 public getbyvalue(id:number):any
 {
     try {
-        // let regn = mongoose.model("registration",registrationSchema);
-        console.log(id);
         let re =new registrationModel();
-         return globalModel.regn.findOne({"id":id})
+        let  searchCriteria ={"id":id};
+         return this._igenericRepo.getSingleData(globalModel.regn,searchCriteria)
          .then((v:any)=>{
             re.pkId = v._id;
             re.id = v.id;
@@ -156,7 +176,7 @@ public getbyvalue(id:number):any
             console.log(v);
             console.log(re);
             return re;
-        }).catch(err => {
+        }).catch((err:any) => {
             console.error(err)
           });
      }

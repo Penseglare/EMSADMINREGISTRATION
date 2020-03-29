@@ -13,7 +13,8 @@ const TYPES = {
     iuser:Symbol("iuser"),
     iuserbusiness:Symbol("iuserbusiness"),
     iuserrepo:Symbol("iuserrepo"),
-
+    igenericRepo:Symbol("igenericRepo")
+    
       }; 
 
       export default TYPES;

@@ -70,6 +70,7 @@ export default class genericRepository implements igenericRepository
               });
     }
     public getSingleData<T>(schema: any, inputJson: any): any {
+        console.log(inputJson);
         return schema.findOne(inputJson)
         .then((v:any)=>{
            return v;

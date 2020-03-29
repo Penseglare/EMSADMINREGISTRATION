@@ -167,14 +167,16 @@ public getbyvalue(id:number):any
     try {
         let re =new registrationModel();
         let  searchCriteria ={"id":id};
+        // console.log(searchCriteria);
          return this._igenericRepo.getSingleData(globalModel.regn,searchCriteria)
          .then((v:any)=>{
+             console.log(v);
             re.pkId = v._id;
             re.id = v.id;
             re.name=v.name;
             re.code=v.code;
-            console.log(v);
-            console.log(re);
+            // console.log(v);
+            // console.log(re);
             return re;
         }).catch((err:any) => {
             console.error(err)

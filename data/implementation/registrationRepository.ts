@@ -87,7 +87,21 @@ export default class registrationRepository implements iregistrationRepository
     {
         try {
             // let regn = mongoose.model("registration",registrationSchema);
-             let inputObject ={id:registration.id,name : registration.name,code:registration.code};
+             let inputObject ={ 
+                 reg :{
+                 id:registration.id,
+                 name : registration.name,
+                 code:registration.code
+                },
+                 address:{
+                     id:1,
+                     registaration:'',
+                     place:"ALW",
+                     street:"ERA",
+                     district:"KK",
+                     pin:"629802"
+                 }
+                };
             // let reg = new globalModel.regn({id:registration.id,name : registration.name,code:registration.code});
             //          reg.save().then((sc:any) => {
             //     console.log("saved success");
@@ -97,12 +111,31 @@ export default class registrationRepository implements iregistrationRepository
             //  });
 
             
-          this._igenericRepo.save(globalModel.regn,inputObject).then((sc:any) => {
-        console.log("saved success");
-             })
-              .catch((err:any) => {
-              console.log("unable to save to database");
-              });
+        //  this._igenericRepo.save(globalModel.regn,inputObject).then((sc:any) => {
+        // console.log("saved success");
+        //      })
+        //       .catch((err:any) => {
+        //       console.log("unable to save to database");
+        //       });
+
+       return this._igenericRepo.save(globalModel.regn,inputObject.reg)
+        .then((data:any) => {
+            console.log("saved parent success"+data.data);
+            
+            inputObject.address.registaration = data.data;
+           return this._igenericRepo.save(globalModel.regAddress,inputObject.address)
+            .then((data:any) => {
+                console.log("saved child success");
+               
+                     })
+                      .catch((err:any) => {
+                      console.log("unable to save to database");
+                      });
+     
+                 })
+                  .catch((err:any) => {
+                  console.log("unable to save to database");
+                  });
  
         } catch (error) {
             

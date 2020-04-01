@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import regAddressSchema  from "./regAddressSchema";
+import globalModel  from "./globalModel";
 // import {Document} from "mongoose";
 
 // export interface IRegistrationSchema extends Document {

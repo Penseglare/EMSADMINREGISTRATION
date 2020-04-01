@@ -3,6 +3,9 @@ export default interface igenericRepository
     save<T>(schema:any, input:any):any;
     saveMany<T>(schema:any, input:Array<T>):T;
     saveManyWithMUltipleOutPut<T>(schema:any, input:Array<T>):T[];
+    saveOnetToOne<T>(schema: any,  childSchemas:any, input: any, parentProperty:string, childProperties:string[]): any;
+    saveOnetToMany<T>(schema: any, input: any): any;
+    saveManytToMany<T>(schema: any, input: any): any;
 
     update<T>(schema:any, input:any,id:string):any;
     updateMany<T>(schema:any, input:Array<T>,id:number[]):T;

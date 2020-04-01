@@ -7,9 +7,12 @@ import igenericRepository from "../interface/igenericRepository";
 export default class genericRepository implements igenericRepository
 {
     public save<T>(schema: any, input: any): any {
-        let object = new schema(input);
-        object.save().then((sc:any) => {
-        console.log("saved success");
+        let inputObject = new schema(input);
+       return inputObject.save().then((data:any) => {
+        // console.log("saved success"+ data);
+        let savedData = {id : data._id,data : data};
+        // console.log(savedData);
+        return savedData;
             })
       .catch((err:any) => {
       console.log("unable to save to database");
@@ -19,6 +22,19 @@ export default class genericRepository implements igenericRepository
         throw new Error("Method not implemented.");
     }
     public saveManyWithMUltipleOutPut<T>(schema: T, input: T[]): T[] {
+        throw new Error("Method not implemented.");
+    }
+    public saveOnetToOne<T>(schema: any, childSchemas:any, input: any,  parentProperty:string, childProperties:string[]): any{
+            try {
+                // this.save(schema,input).then( s=> s);
+            } catch (error) {
+                
+            }
+    }
+    public saveOnetToMany<T>(schema: any, input: any): any{
+        throw new Error("Method not implemented.");
+    }
+    public saveManytToMany<T>(schema: any, input: any): any{
         throw new Error("Method not implemented.");
     }
     public update<T>(schema: any, input: any, id: string): any {
@@ -70,6 +86,7 @@ export default class genericRepository implements igenericRepository
               });
     }
     public getSingleData<T>(schema: any, inputJson: any): any {
+        console.log(inputJson);
         return schema.findOne(inputJson)
         .then((v:any)=>{
            return v;

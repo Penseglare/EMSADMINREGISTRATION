@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import regAddressSchema  from "./regAddressSchema";
+import globalModel  from "./globalModel";
 // import {Document} from "mongoose";
 
 // export interface IRegistrationSchema extends Document {
@@ -22,6 +24,8 @@ const RegistrationSchema = new Schema({
     }
 }
 );
+
+
 //export default mongoose.model<IRegistrationSchema>('registration',RegistrationSchema);
 export default RegistrationSchema;
 //export default mongoose.model('registration',RegistrationSchema);

@@ -6,5 +6,7 @@ export default interface iregistrationRepository
     getRegistredUserById(pkId:string):any;
     deleteuser(pkId:string):any;
     saveUser(registration:registrationModel):void;
+    signupuser(registration:registrationModel):any;
     updateuser(registration:registrationModel,id:string):any;
+    getbyvalue(id:number):any;
 }

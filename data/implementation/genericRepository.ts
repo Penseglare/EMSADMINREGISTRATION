@@ -1,5 +1,6 @@
 import "reflect-metadata"; 
 import { injectable, inject,named,interfaces } from "inversify";
+// import transaction from 'mongoose-transactions';
 import mongodb from 'mongodb';
 import igenericRepository from "../interface/igenericRepository";
 

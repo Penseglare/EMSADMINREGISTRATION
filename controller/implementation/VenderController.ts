@@ -35,10 +35,26 @@ public async getRegistredvendorById(req: Request, res: Response): Promise<any>
 try{
     let vendorManagers = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
     let vendorkey = String(req.params.vendorkey);
-    console.log('vendorkey');
-
-    console.log(vendorkey);
+    // console.log('adsdsadsadsad');
+    //console.log(vendorkey);
         let data = await vendorManagers.getRegistredvendorById(vendorkey);
+            //console.log(data););
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        //console.log(data);
+        //res.json({data});
+        res.send(data);
+} 
+catch(error)
+{
+    throw error;
+}
+}
+public async getallRegistredvendors(req: Request, res: Response): Promise<any>
+{
+try{
+    let vendorManagers = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
+        let data = await vendorManagers.getallRegistredvendors();
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         //console.log(data);

@@ -58,11 +58,20 @@ export default class usergroupManager implements iusergroupManager
         try {
             let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
             let usergrp = new usergroupModel();
+<<<<<<< HEAD
             usergrp.groupid =usergroup._groupid;
             usergrp.groupname = usergroup._groupname;
             usergrp.groupdescription =usergroup._groupdescription;
             usergrp.exportreport=usergroup._exportreport;
             console.log(usergrp);
+=======
+             console.log(usergroup);
+            usergrp.groupname = usergroup._usergroupname;
+            usergrp.groupid =usergroup._id;
+            usergrp.groupdescription =usergroup._usergroupdescription;
+            usergrp.exportreport=usergroup._exportreports;
+            // console.log(usergrp);
+>>>>>>> a70ec1631a82235a37e905278fc3cb03a0e8cc6a
             let data =await usergroupRepositorydata.saveUserGroup(usergrp);
         } catch (error) {
     
@@ -72,10 +81,10 @@ export default class usergroupManager implements iusergroupManager
     try {
         let usergroupRepositorydata  = containerconfig.get<iusergroupRepository>(TYPES.iusergrouprepo);
         let usergrp = new usergroupModel();
-        usergrp.groupname = usergroup._groupname;
-        usergrp.groupid =usergroup._groupid;
-        usergrp.groupdescription =usergroup._groupdescription;
-        usergrp.exportreport=usergroup._exportreport;
+        usergrp.groupname = usergroup._usergroupname;
+        usergrp.groupid =usergroup._id;
+        usergrp.groupdescription =usergroup._usergroupdescription;
+        usergrp.exportreport=usergroup._exportreports;
         console.log(usergrp);
         let data =await usergroupRepositorydata.updateUserGroup(usergrp,id);
     } catch (error) {

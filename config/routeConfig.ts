@@ -1,6 +1,8 @@
 import  express from "express";
 import  containerconfig from "./containerconfig";
 import TYPES from "./type";
+import "reflect-metadata"; 
+import { injectable, inject,named,interfaces } from "inversify"; 
 import {Request, Response} from "express";
 //import registrationController from "../controller/implementation/registrationController";
 import iregistrationController from "../controller/interface/iregistrationController";
@@ -8,9 +10,14 @@ import iusergroupController from "../controller/interface/iusergroupController";
 
 import ivenderController from "../controller/interface/ivenderController";
 
+@injectable()
 export default class routeConfig
 {
     //public registrationController:registrationController=new registrationController();
+    // private _iregistrationController:iregistrationController;
+    // constructor(@inject(TYPES.iregistration) iregistrationController:iregistrationController) {
+    //   this._iregistrationController = iregistrationController;
+    // }
 public registerRoute(route:express.Application):void
 {
     let registration = containerconfig.get<iregistrationController>(TYPES.iregistration);
@@ -32,8 +39,15 @@ public registerRoute(route:express.Application):void
   //  #endregion
 
     route.post("/api/savevendor",vendor.savevendor);
+<<<<<<< HEAD
     //route.get("/api/getRegistredvendorById/:vendorkey",vendor.getRegistredvendorById);
     //route.get("/api/getvalue/:id",registration.getbyvalue);
+=======
+    route.get("/api/getRegistredvendorById/:vendorkey",vendor.getRegistredvendorById);
+    route.get("/api/getallRegistredvendors",vendor.getallRegistredvendors);
+    route.get("/api/getvalue/:id",registration.getbyvalue);
+
+>>>>>>> a70ec1631a82235a37e905278fc3cb03a0e8cc6a
     // route.post("/api/postRegisteredUser",this.registrationController.getRegistredUserBy);
     // route.post("/api/updateRegisteredUser",this.registrationController.getRegistredUserBy);
 }

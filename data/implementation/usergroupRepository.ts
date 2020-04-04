@@ -15,15 +15,17 @@ export default class usergroupRepository implements iusergroupRepository
            let usergroup = mongoose.model("usergroup",usergroup_Schema);
             return usergroup.find()
                        .then(businesses => {
+                           console.log(businesses);
                         let usergroup_Model= Array<usergroupModel>();
                              businesses.map((element:any,i:number) => {
                             let re =new usergroupModel();
-                            re.groupid = element._groupid,
+                            re.groupid = element._id,
                             re.groupname=element.groupname;
                             re.groupdescription=element.groupdescription;
                             re.exportreport=element.exportreport;
                             usergroup_Model.push(re);
                            });
+                           console.log(usergroup_Model);
                              return  usergroup_Model;
               })
               .catch(err => {
@@ -42,8 +44,9 @@ export default class usergroupRepository implements iusergroupRepository
             return usergroup.findById({"_id":mongodb.ObjectId(pkId)})
             .then((v:any)=>{
                 let user =new usergroupModel();
-                user.groupid = v._groupid,
-                user.groupname=v.groupname;user.groupdescription=v.groupdescription;
+                user.groupid = v._id,
+                user.groupname=v.groupname;
+                user.groupdescription=v.groupdescription;
                 user.exportreport=v.exportreport;
                 console.log(user);
                 return user;
@@ -77,6 +80,7 @@ export default class usergroupRepository implements iusergroupRepository
     public saveUserGroup(usergroup:usergroupModel):void
     {
         try {
+            console.log(usergroup);
             let user_group = mongoose.model("usergroup",usergroup_Schema);
             let usergroup_ = new user_group({groupid:usergroup.groupid,groupname : usergroup.groupname,groupdescription:usergroup.groupdescription,exportreport:usergroup.exportreport});
             usergroup_.save().then((sc:any) => {
@@ -98,7 +102,7 @@ export default class usergroupRepository implements iusergroupRepository
             let user_group = mongoose.model("usergroup",usergroup_Schema);
             let usergroup_ = new user_group({groupid:usergroup.groupid,groupname : usergroup.groupname,groupdescription:usergroup.groupdescription,exportreport:usergroup.exportreport});
             const mongodb = require("mongodb");
-          return  user_group.findById({"_groupid":mongodb.ObjectId(id)},(err:any,data:any)=>
+          return  user_group.findById({"_id":mongodb.ObjectId(id)},(err:any,data:any)=>
           {
               data.groupid=usergroup.groupid;data.groupname= usergroup.groupname;data.groupdescription=usergroup.groupdescription;data.exportreport=usergroup.exportreport;
               console.log(data)

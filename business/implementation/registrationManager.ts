@@ -8,21 +8,24 @@ import iregistrationManager from "../interface/iregistrationManager";
 import iregistrationRepository from "../../data/interface/iregistrationRepository";
 import registrationModel from "../../model/registrationModel"; 
 
-
-import mongoose from 'mongoose';
-import  RegistrationSchema  from '../../dbmodel/registrationSchema';
+// import supertest from "supertest";
 
 
 @injectable()
 export default class registrationManager implements iregistrationManager
 {
+    private _iregistrationRepo:iregistrationRepository;
+    constructor(@inject(TYPES.iregistrationrepo) iregistrationRepo:iregistrationRepository)
+     {
+        this._iregistrationRepo = iregistrationRepo;
+    }
 
     public async getRegistredUserBy():Promise<any>
     {
 
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data = await registrationRepositorydata.getRegistredUserBy();
+            // let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            let data = await this._iregistrationRepo.getRegistredUserBy();
             return data;
             
         } catch (error) {
@@ -33,9 +36,9 @@ export default class registrationManager implements iregistrationManager
     {
 
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data =await registrationRepositorydata.getRegistredUserById(pkId);
-            console.log(data);
+            // let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            let data =await this._iregistrationRepo.getRegistredUserById(pkId);
+            // console.log(data);
             return data;
             
         } catch (error) {
@@ -46,8 +49,8 @@ export default class registrationManager implements iregistrationManager
     {
 
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data =await registrationRepositorydata.deleteuser(pkId);
+            // let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            let data =await this._iregistrationRepo.deleteuser(pkId);
             console.log(data);
             return data;
             
@@ -58,13 +61,13 @@ export default class registrationManager implements iregistrationManager
     public async saveUser(registration:any):Promise<void>
     {
         try {
-            let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            // let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
             let reg = new registrationModel();
             reg.name = registration._name;
             reg.code =registration._code;
             reg.id =registration._id;
             console.log(reg);
-            let data =await registrationRepositorydata.saveUser(reg);
+            let data =await this._iregistrationRepo.saveUser(reg);
         } catch (error) {
     
         }
@@ -77,9 +80,9 @@ export default class registrationManager implements iregistrationManager
     {
         try
         {
-            alert("HI Mahnnn");
-            let registrationRepositorydata= containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
-            let data = await registrationRepositorydata.getRegistredUserBy();
+            // alert("HI Mahnnn");
+            // let registrationRepositorydata= containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+            let data = await this._iregistrationRepo.getRegistredUserBy();
             return data;
             //console.log(reg);
             //let data=await registrationRepositorydata.signupuser(reg);
@@ -99,13 +102,13 @@ export default class registrationManager implements iregistrationManager
     // }
 public async updateuser(registration:any,id:string): Promise<any>{
     try {
-        let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+        // let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
         let reg = new registrationModel();
         reg.name = registration._name;
         reg.code =registration._code;
         reg.id =registration._id;
         console.log(reg);
-        let data =await registrationRepositorydata.updateuser(reg,id);
+        let data =await this._iregistrationRepo.updateuser(reg,id);
     } catch (error) {
 
     }
@@ -113,8 +116,13 @@ public async updateuser(registration:any,id:string): Promise<any>{
   public async getbyvalue(id:number):Promise<any>
   {
     try {
+<<<<<<< HEAD
         let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
         //let data =await registrationRepositorydata.getbyvalue(id);
+=======
+        // let registrationRepositorydata  = containerconfig.get<iregistrationRepository>(TYPES.iregistrationrepo);
+        let data =await this._iregistrationRepo.getbyvalue(id);
+>>>>>>> a70ec1631a82235a37e905278fc3cb03a0e8cc6a
         //console.log(data);
         return null;
         
@@ -123,4 +131,8 @@ public async updateuser(registration:any,id:string): Promise<any>{
     }
   }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a70ec1631a82235a37e905278fc3cb03a0e8cc6a

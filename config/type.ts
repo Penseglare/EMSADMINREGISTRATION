@@ -9,9 +9,12 @@ const TYPES = {
 
     ivendor:Symbol("ivendor"),
     ivendorbusiness:Symbol("ivendorbussiness"),
-    ivendorrepo:Symbol("ivendorrepo")
+    ivendorrepo:Symbol("ivendorrepo"),
+    iuser:Symbol("iuser"),
+    iuserbusiness:Symbol("iuserbusiness"),
+    iuserrepo:Symbol("iuserrepo"),
+    igenericRepo:Symbol("igenericRepo")
     
-
       }; 
 
       export default TYPES;

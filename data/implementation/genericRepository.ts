@@ -1,14 +1,19 @@
 import "reflect-metadata"; 
 import { injectable, inject,named,interfaces } from "inversify";
 // import transaction from 'mongoose-transactions';
+import Transaction from 'mongoose-transactions-typescript'
 import mongodb from 'mongodb';
 import igenericRepository from "../interface/igenericRepository";
 
 @injectable()
 export default class genericRepository implements igenericRepository
 {
+    private transaction : Transaction= new Transaction();
     public save<T>(schema: any, input: any): any {
+
+        // this.transaction.insert()
         let inputObject = new schema(input);
+        // schema.startSession();
        return inputObject.save().then((data:any) => {
         // console.log("saved success"+ data);
         let savedData = {id : data._id,data : data};

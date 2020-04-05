@@ -25,6 +25,7 @@
     "mongodb": "^3.5.2",
     "mongoose": "^5.8.9",
     "mongoose-transactions": "^1.1.4",
+    "mongoose-transactions-typescript": "^1.1.4",
     "nodemon": "^2.0.2",
     "reflect-metadata": "^0.1.13",
     "supertest": "^4.0.2",

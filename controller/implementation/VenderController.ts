@@ -18,7 +18,7 @@ public async savevendor(req: Request, res: Response):Promise<any> {
         //alert(JSON.stringify(req.body));
         let vendormanager = containerconfig.get<ivendormanager>(TYPES.ivendorbusiness);
         
-        console.log(req.body);
+        //console.log(req.body);
             let data = await vendormanager.savevendor(req.body);
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

@@ -28,6 +28,7 @@ public registerRoute(route:express.Application):void
     route.post("/api/saveuser",registration.saveuser);
     route.post("/api/signupuser",registration.signupuser);
     route.put("/api/updateuser/:id",registration.updateuser);
+    route.post("/api/upload",registration.upload);
 
   //  #region usergroup
     let usergroup = containerconfig.get<iusergroupController>(TYPES.iusergroup);

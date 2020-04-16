@@ -10,4 +10,5 @@ export default interface iregistrationController
     signupuser(req: Request, res: Response):any;
     updateuser(req: Request, res: Response):any;
     getbyvalue(req: Request, res: Response):any;
+    upload(req: any, res: any):any;
 }

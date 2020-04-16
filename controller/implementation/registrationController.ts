@@ -1,5 +1,9 @@
 import {Request, Response} from "express";
 import "reflect-metadata"; 
+import dir from "mkdirp";
+import fs from 'fs';
+import path from 'path';
+var download = require('download-file')
 import { injectable, inject,named,interfaces } from "inversify"; 
  import TYPES from "../../config/type"; 
  import  containerconfig from "../../config/containerconfig";
@@ -8,6 +12,9 @@ import iregistrationController from "../interface/iregistrationController";
 //import registrationManager from "../../business/implementation/registrationManager";
 import iregistrationManager from "../../business/interface/iregistrationManager";
 //import registrationModel from "../../model/registrationModel";
+// import mutler from "multer";
+
+import logging from '../../util/decorators/logging';
 
 @injectable()
 export default class registrationController implements iregistrationController
@@ -131,4 +138,44 @@ public async getbyvalue(req: Request, res: Response):Promise<any>
         throw error;
     }
 }
+
+public async upload(req: any, res: any):Promise<any>
+{
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+      }
+      logging.fatal("dddd");
+      let uploadedFile = req.files.file;
+    //   https://github.com/Penseglare/EMSADMINREGISTRATION/
+ fs.mkdir('upload', { recursive: true }, (err:any)  =>
+    { 
+        if (err) throw err; 
+       else
+       uploadedFile.mv('upload/'+uploadedFile.name).then((data:any) => {
+        // console.log(data);
+        res.send('File uploaded!');
+      }).catch((err:any)=>{
+        return res.status(500).send(err);  
+      })
+
+
+    //   var url = "http://localhost:4000/"
+ 
+    // var options = {
+    //     directory: "./upload",
+    //     filename: uploadedFile.name
+    // }
+
+    // download(url, options, function(err:any){
+    //     if (err) throw err
+    //     console.log("meow")
+    // }) 
+
+     });
+
+    
+}
+
+ 
+
 }

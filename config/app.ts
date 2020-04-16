@@ -5,7 +5,7 @@ import dbconfig from "../config/dbConfig";
 // import mongodb from "mongodb";
 import mongodb from "mongoose";
 import cors from "cors";
-
+import fileupload from "express-fileupload";
 class App {
 
     public app: express.Application;
@@ -21,6 +21,7 @@ class App {
     private config(): void{
         // support application/json type post data
         this.app.use(bodyParser.json());
+        this.app.use(fileupload());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use(cors());

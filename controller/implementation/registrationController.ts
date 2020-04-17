@@ -157,25 +157,16 @@ public async upload(req: any, res: any):Promise<any>
       }).catch((err:any)=>{
         return res.status(500).send(err);  
       })
-
-
-    //   var url = "http://localhost:4000/"
- 
-    // var options = {
-    //     directory: "./upload",
-    //     filename: uploadedFile.name
-    // }
-
-    // download(url, options, function(err:any){
-    //     if (err) throw err
-    //     console.log("meow")
-    // }) 
-
      });
 
-    
 }
 
- 
-
+public async download(req: any, res: any):Promise<any>
+{
+   var file = req.params.file;
+//   var file = 'red-garden-plant-green-56866.jpg';
+    var fileLocation = path.join('./upload',file);
+    console.log(fileLocation);
+    res.download(fileLocation, file); 
+}
 }
